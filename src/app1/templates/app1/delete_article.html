@@ -1,0 +1,29 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{% trans "Confirm Delete" %}{% endblock %}
+
+{% block content_main %}
+<div class="yui-b">
+
+<div class="yui-g" id="articletop">
+<h2>{% trans "Confirm Delete" %}</h2>
+<div id="contenct">
+<div class="notice">
+<form action="{{ request.path }}" method="post">
+    <ul>
+    <li>{% trans "You want delete" %} <strong>{{obj.title}}</strong>?</li>
+    <li>{{obj.abstract}}</li>
+    <li>{{obj.author}}</li>
+    <li>{{obj.category}}</li>
+    <li></li>
+    </ul>
+  <input type="submit" value="{% trans 'Delete' %}" />
+</form>
+</div>
+
+</div>
+</div>
+
+</div>
+
+{% endblock %}

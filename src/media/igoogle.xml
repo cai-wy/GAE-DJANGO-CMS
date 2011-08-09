@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs 
+		title="National Geographic Pictures - Photo of the Day"
+		height="60"
+		width="468" 
+		directory_title="National Geographic Photo of the Day"
+		title_url="http://national-geographic-photo.appspot.com/"
+		author_location="China"
+		author_affiliation="Hunan"
+		author="Jckwei"
+		author_email="jckwei@gmail.com"
+		description="National Geographic Photo of the Day - Displays National Geographic's picture of the Day"
+		screenshot="http://gaefaction.appspot.com/national/photo_of_the_day_image.jpg"
+		thumbnail="http://farm5.static.flickr.com/4023/4345628982_edf09f0e95_o.gif"
+		scrolling="false" render_inline="optional" category="photos" category2="tools" />
+	<Content type="html">
+		<![CDATA[ 
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-4482501017236436";
+		/* 468x60, 10-5-31 */
+		google_ad_slot = "8363991504";
+		google_ad_width = 468;
+		google_ad_height = 60;
+		//-->
+		</script>
+		<script type="text/javascript"
+		src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>		
+     ]]>
+  </Content>
+</Module>

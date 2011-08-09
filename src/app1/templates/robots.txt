@@ -1,0 +1,7 @@
+# Robots.txt file from http://{{ current_site_domain|safe }}
+# All robots will spider the domain
+
+User-agent: *
+Allow: /
+Sitemap: http://{{ current_site_domain|safe }}/sitemap.xml
+Sitemap: http://{{ current_site_domain|safe }}/bbs/sitemap.xml

@@ -1,0 +1,17 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{% trans "Message" %}{% endblock %}
+
+{% block content_main %}
+<div class="yui-b">
+
+<div class="yui-g" id="articletop">
+<h2>{% trans "Message" %}</h2>
+<div id="contenct">
+<div class="notice">{{tip|safe}}</div>
+</div>
+</div>
+
+</div>
+
+{% endblock %}

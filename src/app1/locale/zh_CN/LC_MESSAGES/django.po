@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-22 17:28+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\forms.py:13
+msgid "Title"
+msgstr "标题"
+
+#: .\forms.py:14
+msgid "Content"
+msgstr "内容"
+
+#: .\forms.py:15
+msgid "Abstract"
+msgstr "摘要"
+
+#: .\forms.py:15 .\forms.py:24
+msgid "Max length 300s"
+msgstr "最多300字符"
+
+#: .\forms.py:16
+msgid "slug"
+msgstr "名称(slug)"
+
+#: .\forms.py:23
+msgid "Name"
+msgstr "名字"
+
+#: .\forms.py:24
+msgid "Message"
+msgstr "留言内容"
+
+#: .\forms.py:25
+msgid "Web"
+msgstr "主页"
+
+#: .\forms.py:25
+msgid "ex: http://www.google.com"
+msgstr "例如 http://www.google.com"
+
+#: .\templates\app1\add_article.html.py:3
+#: .\templates\app1\add_article.html.py:59
+msgid "Apply changes"
+msgstr "应用"
+
+#: .\templates\app1\add_article.html.py:3
+#: .\templates\app1\add_article.html.py:59
+msgid "Create"
+msgstr "创建"
+
+#: .\templates\app1\add_article.html.py:43 .\templates\app1\detail.html.py:32
+msgid "Edit"
+msgstr "编辑"
+
+#: .\templates\app1\add_article.html.py:43
+msgid "Add"
+msgstr "添加"
+
+#: .\templates\app1\add_article.html.py:43
+msgid "Article"
+msgstr "文章"
+
+#: .\templates\app1\add_article.html.py:48
+msgid "Please correct the error "
+msgstr "请修正相关错误"
+
+#: .\templates\app1\add_article.html.py:50
+#: .\templates\app1\add_article.html.py:51
+#: .\templates\app1\add_article.html.py:52
+msgid "*required"
+msgstr "*必填"
+
+#: .\templates\app1\articlelist.html.py:29 .\templates\app1\detail.html.py:25
+msgid "Categories"
+msgstr "分类"
+
+#: .\templates\app1\articlelist.html.py:29 .\templates\app1\detail.html.py:25
+msgid "Tags"
+msgstr "标签"
+
+#: .\templates\app1\articlelist.html.py:29 .\templates\app1\detail.html.py:25
+#: .\templates\app1\detail.html.py:36
+msgid "Author"
+msgstr "作者"
+
+#: .\templates\app1\articlelist.html.py:29 .\templates\app1\detail.html.py:25
+msgid "Date"
+msgstr "日期"
+
+#: .\templates\app1\articlelist.html.py:31
+msgid "Read more"
+msgstr "阅读全文"
+
+#: .\templates\app1\base.html.py:13 .\templates\app1\detail.html.py:32
+#: .\templates\app1\lastcomments.html.py:13
+msgid "Administration"
+msgstr "管理"
+
+#: .\templates\app1\base.html.py:15
+msgid "Add Article"
+msgstr "添加文章"
+
+#: .\templates\app1\base.html.py:17 .\templates\app1\lastcomments.html.py:3
+#: .\templates\app1\lastcomments.html.py:9
+msgid "Recent comments"
+msgstr "最近评论"
+
+#: .\templates\app1\base.html.py:18
+msgid "Django administration"
+msgstr "Django 管理"
+
+#: .\templates\app1\base.html.py:24
+msgid "Category List"
+msgstr "分类列表"
+
+#: .\templates\app1\base.html.py:32
+msgid "Links"
+msgstr "链接"
+
+#: .\templates\app1\delete_article.html.py:3
+#: .\templates\app1\delete_article.html.py:9
+msgid "Confirm Delete"
+msgstr "删除确认"
+
+#: .\templates\app1\delete_article.html.py:14
+msgid "You want delete"
+msgstr "你将要删除"
+
+#: .\templates\app1\delete_article.html.py:20
+#: .\templates\app1\detail.html.py:33 .\templates\app1\detail.html.py:107
+#: .\templates\app1\lastcomments.html.py:13
+msgid "Delete"
+msgstr "删除"
+
+#: .\templates\app1\detail.html.py:27
+msgid "Newer Post"
+msgstr "较新文章"
+
+#: .\templates\app1\detail.html.py:28
+msgid "Older Post"
+msgstr "较早文章"
+
+#: .\templates\app1\detail.html.py:56
+msgid "Like what you read?"
+msgstr "喜欢这篇文章吗？"
+
+#: .\templates\app1\detail.html.py:58 .\templates\app1\detail.html.py:60
+msgid "Leave a comment"
+msgstr "留下您的高见"
+
+#: .\templates\app1\detail.html.py:60
+msgid "Secure login with google account"
+msgstr "用Google帐号安全登录"
+
+#: .\templates\app1\detail.html.py:83
+msgid "Related articles"
+msgstr "相关文章"
+
+#: .\templates\app1\detail.html.py:97
+msgid "Comments"
+msgstr "评论"
+
+#: .\templates\app1\detail.html.py:107
+msgid "Reply"
+msgstr "回复"
+
+#: .\templates\app1\index.html.py:17
+msgid "Recent posts"
+msgstr "最近发表"
+
+#: .\templates\app1\index.html.py:17
+msgid "RSS Feed"
+msgstr "RSS 订阅"
+
+msgid "Flush Cache"
+msgstr "清空缓存"
+
+msgid "Profile"
+msgstr "个人资料"
+
+msgid "Display name"
+msgstr "显示名字"
+
+msgid "About me"
+msgstr "个人简介"
+
+msgid "Sign text"
+msgstr "签名"
+
+msgid "Max length 50s"
+msgstr "最多50个字符"
+
+msgid "Edit your gravatar"
+msgstr "更改你头像"
+
+msgid "My articles"
+msgstr "我的文章"
+
+msgid "Article top_left ads"
+msgstr "文章顶部左边广告"
+
+msgid "Article top_right ads"
+msgstr "文章顶部右边广告"
+
+msgid "Put your Google AdSense to your articles top_left, Formats : 300 x 250 is required and Image Only is best."
+msgstr "把你的Google AdSense广告放在你所发表文章顶部左边，格式要求：大小必须是300 x 250，建议选择图片广告。"
+
+msgid "Put your Google AdSense to your articles top_right, Formats : 300 x 250 is required and Text Only is best."
+msgstr "把你的Google AdSense广告放在你所发表文章顶部右边，格式要求：大小必须是300 x 250，建议选择文字广告。"
+
+msgid "If you have changed your Google AdSense code we will check it and publish it or not after two work days. Border #FEFDF0, Title #7E0202, Background #FEFDF0, Text #5D5B46, URL #5D5B46"
+msgstr "如果你更改了你的Google AdSense代码，我们将在两个工作日内重新审核所提交的新代码并确认是否投放。配色建议：边框#FEFDF0,标题#7E0202,背景#FEFDF0,文字#5D5B46,网址#5D5B46"
+
+msgid "NGP Photo of day"
+msgstr "国家地理每日一图"
+
+msgid "Click here to view full size"
+msgstr "点击查看大图"
+
+msgid "New comment on your post <%s>"
+msgstr "您在《%s》上有新的回复"
+
+msgid "#Re: %s\n%s\n\nClick here to view it: %s"
+msgstr "#Re: %s\n%s\n\n点击这里查看: %s"
+
+msgid "Permalink"
+msgstr "本文地址(Permalink)"
+
+msgid "Go"
+msgstr "搜索"
+
+msgid "BBS"
+msgstr "论坛"

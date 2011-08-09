@@ -1,0 +1,74 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{% if obj %}{% trans 'Apply changes' %}{% else %}{% trans 'Create' %}{% endif %}{% endblock %}
+
+{% block content_main %}
+<!-- Load jQuery -->
+<script type="text/javascript" src="{%if g_blog.googlejquery%}{{g_blog.googlejquery|safe}}{%else%}/media/js/jquery.min.js{%endif%}"></script>
+
+<!-- Load TinyMCE -->
+<script type="text/javascript" src="/tiny_mce/jquery.tinymce.js"></script>
+<script type="text/javascript">
+	$().ready(function() {
+		$('textarea.tinymce').tinymce({
+			// Location of TinyMCE script
+			script_url : '/tiny_mce/tiny_mce.js',
+
+			// General options
+			theme : "advanced",
+			plugins : "pagebreak,table,advhr,advimage,advlink,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,contextmenu,directionality,noneditable,visualchars,nonbreaking,xhtmlxtras",
+
+			// Theme options
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontsizeselect,nonbreaking,advhr,|,ltr,rtl",
+			theme_advanced_buttons2 : "replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+			theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media",
+			theme_advanced_toolbar_location : "top",
+			theme_advanced_toolbar_align : "left",
+			theme_advanced_statusbar_location : "bottom",
+			theme_advanced_resizing : true,
+			
+			// Example content CSS (should be your site CSS)
+			content_css : "/media/css/content.css",
+						
+			// Replace values for the template plugin
+			template_replace_values : {
+				username : "Some User",
+				staffid : "991234"
+			}
+		});
+	});
+</script>
+<!-- /TinyMCE -->
+
+<div class="yui-b">
+<div class="yui-g" id="articletop">
+<!-- YOUR DATA GOES HERE -->
+<h2>{% if obj %}{% trans "Edit" %}{% else %}{% trans "Add" %}{% endif %} {% trans "Article" %}</h2>
+<div id="contenct">
+
+<form action="" method="post" enctype="multipart/form-data" id="form1">
+    {% if form.errors %}
+    <p style="color: red;">{% trans "Please correct the error " %}</p>
+    {% endif %}
+    <p>{% if form.category.errors %}{{form.category.errors}}<br/>{% endif %}{{ form.category.label }} : {{ form.category }} {% trans "*required" %}</p>
+    <p>{% if form.title.errors %}{{form.title.errors}}<br/>{% endif %}{{ form.title.label }} : {{ form.title }} {% trans "*required" %}</p>
+    <p>{% if form.content.errors %}{{form.content.errors}}<br/>{% endif %}{{ form.content.label }} : {% trans "*required" %}</p>
+    <p>{{ form.content }}</p>
+    <p>{% trans "Tags" %} : <input name="tags" type="text" value="{{ tags }}" size="60" maxlength="60" style="width:400px;padding:4px;"/> split with ","</p>
+    <p>{% if form.abstract.errors %}{{form.abstract.errors}}<br/>{% endif %}{{ form.abstract.label }} : {{ form.abstract.help_text }}</p>
+    <p>{{ form.abstract }}</p>
+    <p>{% if form.slug.errors %}{{form.slug.errors}}<br/>{% endif %}{{ form.slug.label }} : {{ form.slug }}</p>
+	<p>{{ form.commentclosed.label }} : {{ form.commentclosed }}</p>
+    <p><input type="submit" value=" {% if obj %}{% trans 'Apply changes' %}{% else %}{% trans 'Create' %}{% endif %} " />
+	</p>
+    
+<br />
+
+</form>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}

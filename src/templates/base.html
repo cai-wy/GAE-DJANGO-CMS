@@ -1,0 +1,56 @@
+{% load i18n %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+    lang="{% firstof LANGUAGE_CODE 'en' %}">
+<head>
+    <title>{% block title %}{% endblock %} - {{ g_blog.title }}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    {%if g_blog.head_metas%}{{g_blog.head_metas|safe}}{%endif%}
+    <link rel="stylesheet" href="/media/css/reset-fonts-grids.css" type="text/css" />
+    <style type="text/css">
+    #custom-doc { width:74.54em;*width:72.74em;width:969px;min-width:969px; margin:auto; text-align:left; }
+    </style>   
+    {% block css %}
+    <link rel="stylesheet" href="/media/blueprintcss/typography.css" type="text/css" />
+    <link rel="stylesheet" href="/media/blueprintcss/forms.css" type="text/css" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css" />
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {% block extra-head %}{% endblock %}    
+</head>
+<body>
+<div id="custom-doc" class="yui-t5">
+
+    <div id="hd" role="banner">
+    <div id="headtop">{% if user.is_authenticated %}{% trans "user" %}: <strong>{{ user }}</strong> | <a href="{% url app1.views.profile %}">{% trans "Profile" %}</a> |  {% if user.is_superuser %}<a href="{% url app1.views.emptymem %}">{% trans "Flush Cache" %}</a> | {%endif%}<a href="{% url django.contrib.auth.views.logout %}">{% trans "Logged out" %}</a> {% else %}<a href="{% url django.contrib.auth.views.login %}">{% trans "Secure login with google account" %}</a>{% endif %}</div>
+    <div><h1><a href="/" title="{{ g_blog.title }}">{{ g_blog.title }}</a> <em title="{{ g_blog.subtitle }}">{{ g_blog.subtitle }}</em></h1>
+    <ul class="nav">{% block nav %}
+    <li class="curselect"><a href="{% url app1.views.index %}" title="GAE CMS">GAE CMS</a></li>
+    <li><a href="http://gaebbs.xibu.biz/" title="GAE {% trans 'BBS' %}">GAE {% trans 'BBS' %}</a></li>{% endblock %}
+    </ul></div>
+    </div>
+        
+    <div id="bd" role="main">
+    {% block content %}
+	{% endblock %}
+	</div>
+    
+    <div id="ft" role="contentinfo">
+    <p style="float:left;">&copy; copyright {{ g_blog.title }} <a href="/index.xml" target="_blank">RSS Feed</a><br/>
+    Powered by <a href="http://code.google.com/p/gae-django-cms/" target="_blank" title="gae-django-cms">gae-django-cms</a> 
+    &
+    <a href="http://code.google.com/p/app-engine-patch/" target="_blank" rel="nofollow">app-engine-patch</a>    
+    &
+    <a href="http://code.google.com/appengine/" target="_blank" rel="nofollow">Google App Engine</a>,
+    Theme by <a href="http://keb-log.appspot.com" target="_blank" title="keb-log">keb-log</a>
+    </p>
+    <p style="float:right;"><a href="#top"> Top&uarr;</a></p>
+    </div>
+    
+</div>
+{%if g_blog.analytics%}{{g_blog.analytics|safe}}{%endif%}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{% trans "Recent comments" %}{% endblock %}
+
+{% block content_main %}
+<div class="yui-b">
+
+<div class="yui-g" id="articletop">
+<h2>{% trans "Recent comments" %}</h2>
+<div id="contenct">
+<ul>
+{%for each in objs%}
+<li><strong>{{each.name}}</strong> {{each.email}}; <a href="{{each.web}}" target="_blank">{{each.web}}</a>; @<a href="{{each.entry.get_absolute_url}}#{{each.key.id}}" target="_blank">{{each.entry.title}}</a> | {% trans "Administration" %} <a href='{% url app1.views.del_comment key=each.key %}'>{% trans "Delete" %}</a><br/>{{each.message|safe}}</li>
+{%endfor%}
+</ul>
+</div>
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{{obj.displayname|safe}} {% trans "Profile" %}{% endblock %}
+
+{% block content_main %}
+<div class="yui-b">
+
+<div class="yui-g" id="articletop">
+<h2>{{obj.displayname|safe}} {% trans "Profile" %}</h2>
+<div id="contenct">
+<p style="float:left;">
+<img src="{{obj.gravatar_url}}" class="gravatar" alt="{{obj.name}}" height="120" width="120" /><br/>
+</p>
+<p style="margin-left:30px;float:left;text-align:right;display:inline;">
+  <table style="width:510px;">
+    <tr><td width="20%" align="right">{% trans "Display name" %}:</td><td align="left">{{obj.displayname}}</td></tr> 
+    <tr><td align="right">{% trans "Web" %}:</td><td>{%if obj.web%}<a href="{{obj.web}}" target="_blank">{{obj.web}}</a>{%endif%}</td></tr> 
+    <tr><td align="right">{% trans "About me" %}:</td><td>{%if obj.aboutme %}{{obj.aboutme|safe}}{%endif%}</td></tr> 
+    <tr><td align="right">{% trans "Sign text" %}:</td><td>{%if obj.signtext %}{{obj.signtext}}{%endif%}</td></tr>    
+  </table>
+</p>
+</div>
+</div>
+
+</div>
+
+{% endblock %}

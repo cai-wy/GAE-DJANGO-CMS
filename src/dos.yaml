@@ -1,0 +1,5 @@
+blacklist:
+- subnet: 212.95.54.48
+  description: a single IP address
+- subnet: 194.0.221.230
+  description: a single IP address

@@ -1,0 +1,128 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{{obj}}{% endblock %}
+
+{% block extra-head %}
+<meta name="keywords" content="{{obj}},{{obj.strtags}},{{ g_blog.title }},{{ g_blog.keywords }}" />
+<meta name="description" content="{{obj}},{{obj.category.name}},{{obj.strtags}},{{obj.abstract}}" />
+{% endblock %} 
+
+{% block content_main %}
+<div class="yui-b">
+
+<div class="yui-g" id="articletop">
+<h2><a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a> &raquo; <span title="{{obj.title|safe}}">{{obj.title|safe}}</span></h2>
+
+{% if obj.profile.pub_ads %}
+<div class="yui-u first" id="ggad_index">
+{{obj.profile.art_left|safe}}
+</div>
+<div class="yui-u" id="ggad_index2">
+{{obj.profile.art_right|safe}}
+</div>
+{% else %}
+{%if ads_articledetail_left_top%}<div class="yui-u first" id="ggad_index">
+{{ads_articledetail_left_top|safe}}
+</div>{%endif%}
+{%if ads_articledetail_right_top%}<div class="yui-u" id="ggad_index2">
+{{ads_articledetail_right_top|safe}}
+</div>{%endif%}
+{%endif%}
+
+<div class="clear"></div>
+<div id="contenct">
+{{obj.content|safe}}
+<p class="permalink">{% trans "Permalink" %} http://{{current_site.domain}}{{obj.short_url}}</p>
+<p>{% trans "Categories" %} <a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a> {%if obj.tags%}{% trans "Tags" %}: {%for tag in obj.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a>{% if not forloop.last %}, {% endif %}{%endfor%}{%endif%} {% trans "Author" %}: <a href="{{obj.profile.get_absolute_url}}" title="{{obj.profile.displayname|safe}} {% trans 'Profile' %}" rel="nofollow">{{obj.profile.displayname|safe}}</a> {% trans "Date" %} {{obj.pub_time|date:"d/m/Y"}}</p>
+<ul> 
+	{% if obj.next %}<li>{% trans "Newer Post" %}: <a href="{{obj.next.get_absolute_url}}" title="{{obj.next.title}}">{{obj.next.title}}</a></li>{% endif %}
+	{% if obj.prev %}<li>{% trans "Older Post" %}: <a href="{{obj.prev.get_absolute_url}}" title="{{obj.prev.title}}">{{obj.prev.title}}</a></li>{% endif %}
+</ul>
+{% if user.is_authenticated %}
+<p>{% if user.is_superuser %}
+{% trans "Administration" %}: <a href='{% url app1.views.edit_article key=obj.key %}'>{% trans "Edit" %}</a>
+| <a href='{% url app1.views.del_article key=obj.key %}'>{% trans "Delete" %}</a>
+{%else%}
+{% ifequal user obj.author %}
+{% trans "Author" %}: <a href='{% url app1.views.edit_article key=obj.key %}'>{% trans "Edit" %}</a>
+{% endifequal %}
+{% endif %}</p>
+{% endif %}
+
+{%if not obj.commentclosed%}
+<a name="postcomment"></a>
+
+<hr/>
+<h3>{% trans "Like what you read?" %} 
+{% if user.is_authenticated %}
+<script language="javascript" type="text/javascript">  
+//
+function show_post_comment(){
+    document.getElementById("postcomment2").style.display = "block";
+}
+//
+function replyto(somebd,commentkey){
+    show_post_comment();
+	document.getElementById("id_toID").value = commentkey;
+    document.getElementById("id_message").value = "To "+somebd+":\n";
+}
+</script> 
+<a href="#postcomment" onclick='show_post_comment();'>{% trans "Leave a comment" %}</a>
+{%else%}
+<a href="{{continue_url}}">{% trans "Secure login with google account" %}</a> {% trans "Leave a comment" %}
+{%endif%}
+</h3>
+
+<div id="postcomment2" {%if not form.name.data%}style="display:None;"{%endif%}>
+
+<form action="" method="POST">
+<INPUT type="hidden" id="id_toID" name="toID" value="">
+<p>{%if form.name.errors%}{{form.name.errors}}<br/>{%endif%}<label for="id_name">{{form.name.label}}: </label> {{form.name}} {% trans "*required" %}<br/>
+{%if form.web.errors%}{{form.web.errors}}<br/>{%endif%}<label for="id_web">{{form.web.label}}: </label> {{form.web}} {{form.web.help_text}}<br/>
+{%if form.message.errors%}{{form.message.errors}}<br/>{%endif%}<label for="id_message">{{form.message.label}}: {% trans "*required" %} ({{form.message.help_text}})</label> <br/>{{form.message}} </p>
+
+<p><input type="submit" style="width: 90px" value="{% trans 'Submit' %}" /></p>
+</form>
+
+</div>
+{%endif%}
+
+</div>
+</div>
+
+<div class="yui-g" id="articlebot">
+    <div class="yui-u first cate">
+    <h2>{% trans "Related articles" %}</h2>
+    <ul class="odd">{%for each in obj.relateposts%}<li><a href="{{each.get_absolute_url}}" title="{{each.title}}">{{each.title}}</a></li>{%endfor%}
+    </ul>    
+    </div>
+    
+    <div class="yui-u cate">
+    <h2><a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a></h2>
+    <ul class="even">{%for each in obj.category.posts%}<li><a href="{{each.get_absolute_url}}" title="{{each.title}}">{{each.title}}</a></li>{%endfor%}
+    </ul>    
+    </div>
+</div>
+{%if commentlist%}
+<a name="comments"></a>
+<div class="yui-g" id="articletop">
+<h2>{% trans "Comments" %}</h2>
+<ul class="comments">
+{%for each in commentlist%}
+<li><a name="{{ each.key.id }}"></a> 
+<h3 class="messageh3" title="{{each.name}}"><img src="{{each.gravatar_url}}" class="gravatar" alt="{{each.name}}" height="60" width="60" /></h3>
+<p class="message">
+{%if each.web%}<a href="{{each.web}}" title="{{each.web}}" target="_blank" rel="nofollow">{{each.name}}</a>
+{%else%}
+{{each.name}}
+{%endif%}
+@{{each.date|date:"Y-m-d H:i:s"}} {%if not obj.commentclosed%}<a href="#postcomment" onclick='replyto("{{each.name}}","{{each.key}}");' title="{% trans 'Reply' %} {{each.name}}">{% trans "Reply" %}</a>{%endif%} {% if user.is_superuser %} | <a href='{% url app1.views.del_comment key=each.key %}'>{% trans "Delete" %}</a>{%endif%}<br/>
+{{each.message|safe}}</p>
+</li>{%endfor%}
+</ul>
+{%if pagination_div%}{{ pagination_div|safe }}{%endif%}
+</div>
+{%endif%}
+</div>
+
+{% endblock %}

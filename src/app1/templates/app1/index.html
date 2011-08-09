@@ -1,0 +1,43 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{{ g_blog.title }}{% endblock %}
+
+{% block extra-head %}
+<meta name="keywords" content="{{ g_blog.title }},{{ g_blog.keywords }}" />
+<meta name="description" content="{{ g_blog.description }}" />
+{% endblock %} 
+
+{% block content_main %}
+<div class="yui-b" id="conmain_index">
+<div class="yui-g">
+    <div class="yui-u first" id="ggad_index">
+    {%if ads_index_left_top%}{{ads_index_left_top|safe}}{%endif%}
+    </div>
+    <div class="yui-u cate">
+    <h2>{% trans "Recent posts" %} <A title="{% trans 'RSS Feed' %}" href="{% url app1.views.rsslatest%}" target="_blank"><IMG title="{% trans 'RSS Feed' %}" src="/media/images/rss.gif" alt="{% trans 'RSS Feed' %}"></A></h2>
+    <ul class="even">{%for each in newposts%}<li><a href="{{each.get_absolute_url}}" title="{{each.title}}">{{each.title}}</a></li>{%endfor%}
+    </ul>
+    </div>
+</div>
+<div class="yui-g">
+{%for cate in all_categories|slice:":8"%}
+{% if forloop.counter|divisibleby:2 %}
+    <div class="yui-u cate">
+    <h2><a href="{{cate.get_absolute_url}}" title="{{cate.name|safe}}">{{cate.name|safe}}</a></h2>
+    <ul class="odd">{%for each in cate.posts%}<li><a href="{{each.get_absolute_url}}" title="{{each.title}}">{{each.title}}</a></li>{%endfor%}
+    </ul>    
+    </div>
+    <div class="clear"></div>
+{%else%}
+    <div class="yui-u first cate">
+    <h2><a href="{{cate.get_absolute_url}}" title="{{cate.name|safe}}">{{cate.name|safe}}</a></h2>
+    <ul class="even">{%for each in cate.posts%}<li><a href="{{each.get_absolute_url}}" title="{{each.title}}">{{each.title}}</a></li>{%endfor%}
+    </ul>    
+    </div>    
+{%endif%}
+{%endfor%}
+</div>
+
+</div>
+
+{% endblock %}

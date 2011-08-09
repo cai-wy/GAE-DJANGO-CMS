@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load cache %}
+{% load i18n %}
+{% block title %}{% block subtitle %}{% endblock %} - GAE cms{% endblock %}
+
+{% block nav %}
+    <li class="curselect"><a href="{% url app1.views.index %}" title="GAE CMS">GAE CMS</a></li>
+    <li><a href="http://gaebbs.xibu.biz/" title="GAE {% trans 'BBS' %}">GAE {% trans 'BBS' %}</a></li>
+{% endblock %}
+
+{% block content %}
+<div id="yui-main">
+    {% block content_main %}{% endblock %}
+</div>
+
+<div class="yui-b" id="sidebar">
+<form action="http://www.google.com/cse" target="_blank" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="{% if g_blog.google_cse_cx %}{{g_blog.google_cse_cx|safe}}{% else %}009677936332633277893:-nyho-cdiwa{% endif %}" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="28" />
+    <input type="submit" name="sa" value="{% trans 'Go' %}" />
+  </div>
+</form>
+
+{% if user.is_authenticated %}
+<div class="wrap_top">
+<h2>{% trans "Administration" %}</h2>
+<ul class="wrap_list">
+<li><a href="{% url app1.views.add_article %}">{% trans "Add Article" %}</a></li>
+<li><a href="{% url app1.views.myarticles %}">{% trans "My articles" %}</a></li>
+{% if user.is_superuser %}
+<li><a href="{% url app1.views.lastcomments %}">{% trans "Recent comments" %}</a></li>
+<li><a href="/admin/app1/">{% trans "Django administration" %}</a></li>
+{%endif%}
+</ul>
+</div>
+{%endif%}
+
+<div class="wrap_top">
+<h2>{% trans "Category List" %}</h2>
+<ul class="wrap_list">
+{%for each in all_categories%}
+<li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
+</ul>
+</div>
+
+{%if g_blog.display_ngp%}
+<div class="wrap_top">
+<h2>{% trans "NGP Photo of day" %}</h2>
+{% cache 600 ngp %}
+<p style="text-align:center;">
+<a href="http://www.national-geographic-photo.com/" target="_blank" title="{% trans 'Click here to view full size' %}">
+<img src='http://www.national-geographic-photo.com/showimg' alt="{% trans 'NGP Photo of day' %}" width="200" height="150" style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none;" /></a>
+</p>
+{% endcache %}
+</div>
+{%endif%}
+
+{%if newcomment_list%}
+<div class="wrap_top">
+<h2>{% trans "Recent Comment" %}</h2>
+<ul class="wrap_list">
+{%for each in newcomment_list%}
+<li class="comment">{{each.name}}@<a href="{{each.entry.get_absolute_url}}#{{each.key.id}}" title='{{each.message|slice:":100"}}' target="_blank">{{each.entry.title|safe}}</a></li>{%endfor%}
+</ul>
+</div>
+{%endif%}
+
+{%if links_list%}
+<div class="wrap_top">
+<h2>{% trans "Links" %}</h2>
+<ul class="wrap_list">
+{%for each in links_list%}
+<li class="link"><a href="{{each.url}}" title="{{each.name}}" target="_blank" rel="nofollow">{{each.name}}</a></li>{%endfor%}
+</ul>
+</div>
+{%endif%}
+
+</div>
+
+{% endblock %}

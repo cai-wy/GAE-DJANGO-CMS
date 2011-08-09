@@ -1,0 +1,24 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{% trans "My articles" %}{% endblock %}
+
+{% block extra-head %}
+<meta name="keywords" content="{{obj}},{{ g_blog.title }},{{ g_blog.keywords }}" />
+<meta name="description" content="{{obj}},{{ g_blog.description }}" />
+{% endblock %} 
+
+{% block content_main %}
+<div class="yui-b">
+<div class="yui-g" id="artlist_top">
+    <h2>{% trans "My articles" %} ( New Top 20 )</h2>
+    <ul class="bbsartlist">
+    {%for each in cur_articlelist%}
+    <li>
+    <h3><a href="{{each.get_absolute_url}}" title="{{each.title|safe}}" class="title2">{{each.title|safe}}</a> <em>{% ifnotequal each.commentcount 0 %}{% trans 'Reply' %}:{{each.commentcount}} {% endifnotequal %}{% trans "Author" %}: <a href="{{each.profile.get_absolute_url}}" title="{{each.profile.displayname|safe}} {% trans 'Profile' %}">{{each.profile.displayname|safe}}</a> {% trans "Date" %}: {{each.pub_time|date:"Y-m-d H:i:s"}}</em></h3>
+    </li>{%endfor%}
+    </ul>   
+</div>
+
+</div>
+
+{% endblock %}

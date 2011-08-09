@@ -1,0 +1,36 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{{obj}}{% endblock %}
+
+{% block extra-head %}
+<meta name="keywords" content="{{obj}},{{ g_blog.title }},{{ g_blog.keywords }}" />
+<meta name="description" content="{{obj}},{{ g_blog.description }}" />
+{% endblock %} 
+
+{% block content_main %}
+<div class="yui-b">
+<div class="yui-g" id="artlist_top">
+    <h2 title="{{obj|safe}}">{{obj|safe}}</h2>
+    {%if ads_articlelist_top%}<div class="artlist_ggad">{{ads_articlelist_top|safe}}</div>{%endif%}
+</div>
+
+<div class="yui-g">
+
+<div id="con_articlelist">
+<ul>
+{%for each in cur_articlelist%}{%if each%}
+<li>
+<h3><a href="{{each.get_absolute_url}}" title="{{each.title|safe}}">{{each.title|safe}}</a></h3>
+<p>{% trans "Categories" %} <a href="{{each.category.get_absolute_url}}" title="{{each.category.name}}">{{each.category.name|safe}}</a> {%if each.tags%}{% trans "Tags" %}: {%for tag in each.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a>{% if not forloop.last %}, {% endif %}{%endfor%}{%endif%} {% trans "Author" %}: <a href="{{each.profile.get_absolute_url}}" title="{{each.profile.displayname|safe}} {% trans 'Profile' %}">{{each.profile.displayname|safe}}</a> {% trans "Date" %}: {{each.pub_time|date:"d/m/Y"}}</p>
+<p>{{each.abstract|safe}}</p>
+<p class="more"><a href="{{each.get_absolute_url}}" rel="nofollow">{% trans "Read more" %}</a></p>
+</li>{%endif%}{%endfor%}
+</ul>
+{%if pagination_div%}{{ pagination_div|safe }}{%endif%}
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

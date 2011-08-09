@@ -1,0 +1,36 @@
+{% extends 'app1/base.html' %}
+{% load i18n %}
+{% block subtitle %}{% trans "Profile" %}{% endblock %}
+
+{% block content_main %}
+<div class="yui-b">
+
+<div class="yui-g" id="articletop">
+<h2>{% trans "Profile" %}</h2>
+<div id="artlist_top">
+	<style type="text/css">
+		table {border-collapse:1px;border-spacing:1px;border: 1px}
+    th { text-align:right;}
+  </style>
+<div style="float:left;margin:10px 0px 0px 10px;">
+<img src="{{obj.gravatar_url}}" class="gravatar" alt="{{obj.name}}" height="120" width="120" /><br/>
+<a href="http://www.gravatar.com" target="_blank">{% trans "Edit your gravatar" %}</a>
+</div>
+<div style="margin-left:30px;float:left;text-align:right;display:inline;">
+<form action="{{ request.get_full_path }}" method="post">
+  <table style="width:460px;text-align:left;vertical-align:top;" >{{ form.as_table }}
+  <tr><td width="140"></td><td width="320">
+  <!-- {% trans "If you have changed your Google AdSense code we will check it and publish it or not after two work days. Border #FEFDF0, Title #7E0202, Background #FEFDF0, Text #5D5B46, URL #5D5B46" %} -->
+  </td></tr>  
+  <tr><td></td><td>
+  <input type="submit" value="Submit" /> 
+  </td></tr>
+  </table>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+
+{% endblock %}
