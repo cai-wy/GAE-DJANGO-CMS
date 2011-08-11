@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load cache %}
 {% load i18n %}
-{% block title %}{% block subtitle %}{% endblock %} - GAE cms{% endblock %}
+{% block title %}{% block subtitle %}{% endblock %}{% endblock %}
 
 {% block nav %}
 <li class="curselect"><a href="{% url app1.views.index %}" title="Finance Guider">Home</a></li>
 {%for each in all_categories%}
 <li class="curselect"><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>
 {%endfor%}
-<li class="curselect"></li>
+
 {% endblock %}
 
 {% block searchbox %}

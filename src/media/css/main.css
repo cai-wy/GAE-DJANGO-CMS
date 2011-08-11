@@ -6,15 +6,15 @@ a:hover {color:#000;text-decoration:underline;}
 #hd h1 a{color:#ddd;}
 #hd h1 a:hover{color:#fff;text-decoration:none;}
 #hd h1 em{color:#ccc;font-size:small;}
-#hd #headtop {padding:3px 10px 3px; color:#ccc; border-top:1px solid #e50000; border-bottom:1px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;text-align:right;}
+#hd #headtop {padding:3px 10px 3px; color:#ccc; border-top:2px solid #e50000; border-left:2px solid #e50000;border-bottom:1px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;text-align:right;}
 #hd #headtop a {color:#fff;}
 #hd #headtop a:hover {text-decoration:underline;}
-#hd .nav {color:#fff;float:left;list-style-type: none;margin: 0px;padding: 0px;height: 27px;line-height: 25px;border:None;}
-#hd .nav li {display: block;padding: 0px;float: left;margin-right:3px;color:#ccc; border-top:1px solid #e50000; border-bottom:1px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;}
+#hd .nav {color:#fff;float:left;list-style-type: none;margin: 0px;padding: 0px;height: 29px;line-height: 25px;border:None;}
+#hd .nav li {display: block;padding: 0px;float: left;margin-right:5px;color:#ccc; border-top:2px solid #e50000;border-left:2px solid #e50000; border-bottom:2px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;}
 #hd .nav li a {display: block;padding: 0px 15px 0px 15px;text-decoration: none;color: #eee;font-size: 13px;font-weight: 600;}
 #hd .nav li a:hover {color: #fff;background: #cb1b1b;}
 #hd .nav .curselect {color: #fff;background: #cb1b1b;}
-#hd .searchbox {float: right;clear: right;margin-right:5px}
+#hd .searchbox {float: right;margin-right:5px;}
 
 #bd {margin-bottom:10px;}
 #bd h2 {color:#ccc;margin:0px;padding:3px 0px 3px 8px;font-size:large;}
