@@ -14,11 +14,11 @@ MEDIA_VERSION = 1
 
 # Change your email settings
 if on_production_server:
-    DEFAULT_FROM_EMAIL = 'wenyuan.cai@gmail.com'
+    DEFAULT_FROM_EMAIL = 'admin@financeguider.info'
     SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '1234567890'
+SECRET_KEY = '19800808'
 
 #ENABLE_PROFILER = True
 #ONLY_FORCED_PROFILE = True
@@ -28,7 +28,7 @@ SECRET_KEY = '1234567890'
 #PROFILE_PATTERN = 'ext.db..+\((?:get|get_by_key_name|fetch|count|put)\)'
 
 # Enable I18N and set default language to 'en'
-USE_I18N = True
+USE_I18N = False
 LANGUAGE_CODE = 'en'
 
 #AUTH_ADMIN_USER_AS_SUPERUSER = False
