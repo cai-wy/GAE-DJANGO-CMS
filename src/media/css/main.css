@@ -1,8 +1,8 @@
 body {background-color:#f2f0dc;}
 a {text-decoration:None;color:#5d5b46;}
 a:hover {color:#000;text-decoration:underline;}
-#hd {background:url('/media/images/gae_logo_cn.gif') #212121 10px center no-repeat;margin-bottom:10px;}
-#hd h1{color:#f9f7d1;margin:15px 15px 15px 70px;}
+#hd {background: #212121 10px center no-repeat;margin-bottom:10px;}
+#hd h1{color:#f9f7d1;margin:15px 15px 15px 15px;}
 #hd h1 a{color:#ddd;}
 #hd h1 a:hover{color:#fff;text-decoration:none;}
 #hd h1 em{color:#ccc;font-size:small;}
