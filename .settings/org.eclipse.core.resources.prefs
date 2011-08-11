@@ -1,10 +1,11 @@
-#Thu Aug 11 11:11:03 CST 2011
+#Thu Aug 11 13:36:01 CST 2011
 eclipse.preferences.version=1
 encoding//src/app1/forms.py=utf-8
 encoding//src/app1/models.py=utf-8
 encoding//src/app1/urls.py=utf-8
 encoding//src/app1/urlsauto.py=utf-8
 encoding//src/app1/views.py=utf-8
+encoding//src/common/appenginepatch/main.py=utf-8
 encoding//src/settings.py=utf-8
 encoding//src/urls.py=utf-8
 encoding/src=UTF-8
