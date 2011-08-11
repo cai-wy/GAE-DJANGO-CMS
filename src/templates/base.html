@@ -25,12 +25,14 @@
 <div id="custom-doc" class="yui-t5">
 
     <div id="hd" role="banner">
-    <div id="headtop">{% if user.is_authenticated %}{% trans "user" %}: <strong>{{ user }}</strong> | <a href="{% url app1.views.profile %}">{% trans "Profile" %}</a> |  {% if user.is_superuser %}<a href="{% url app1.views.emptymem %}">{% trans "Flush Cache" %}</a> | {%endif%}<a href="{% url django.contrib.auth.views.logout %}">{% trans "Logged out" %}</a> {% else %}<a href="{% url django.contrib.auth.views.login %}">{% trans "Secure login with google account" %}</a>{% endif %}</div>
+    <div id="headtop">{% if user.is_authenticated %}{% trans "user" %}: <strong>{{ user }}</strong> |  {% if user.is_superuser %}<a href="{% url app1.views.emptymem %}">{% trans "Flush Cache" %}</a> | {%endif%}<a href="{% url django.contrib.auth.views.logout %}">{% trans "Logged out" %}</a> {% else %}<a href="{% url django.contrib.auth.views.login %}">{% trans "Secure login with google account" %}</a>{% endif %}</div>
     <div><h1><a href="/" title="{{ g_blog.title }}">{{ g_blog.title }}</a> <em title="{{ g_blog.subtitle }}">{{ g_blog.subtitle }}</em></h1>
     <ul class="nav">{% block nav %}
     <li class="curselect"><a href="{% url app1.views.index %}" title="GAE CMS">GAE CMS</a></li>
     <li><a href="http://gaebbs.xibu.biz/" title="GAE {% trans 'BBS' %}">GAE {% trans 'BBS' %}</a></li>{% endblock %}
-    </ul></div>
+    </ul>
+    {% block searchbox %}{% endblock %}
+    </div>
     </div>
         
     <div id="bd" role="main">

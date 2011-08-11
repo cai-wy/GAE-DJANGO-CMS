@@ -4,8 +4,24 @@
 {% block title %}{% block subtitle %}{% endblock %} - GAE cms{% endblock %}
 
 {% block nav %}
-    <li class="curselect"><a href="{% url app1.views.index %}" title="GAE CMS">GAE CMS</a></li>
-    <li><a href="http://gaebbs.xibu.biz/" title="GAE {% trans 'BBS' %}">GAE {% trans 'BBS' %}</a></li>
+<li class="curselect"><a href="{% url app1.views.index %}" title="Finance Guider">Home</a></li>
+{%for each in all_categories%}
+<li class="curselect"><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>
+{%endfor%}
+<li class="curselect"></li>
+{% endblock %}
+
+{% block searchbox %}
+<div class="searchbox">
+	<form action="http://www.google.com/cse" target="_blank" id="cse-search-box">
+		<div>
+	    <input type="hidden" name="cx" value="{% if g_blog.google_cse_cx %}{{g_blog.google_cse_cx|safe}}{% else %}009677936332633277893:-nyho-cdiwa{% endif %}" />
+	    <input type="hidden" name="ie" value="UTF-8" />
+	    <input type="text" name="q" size="26" />
+	    <input type="submit" name="sa" value="{% trans ' Google ' %}" />
+		</div>
+	</form>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -14,15 +30,6 @@
 </div>
 
 <div class="yui-b" id="sidebar">
-<form action="http://www.google.com/cse" target="_blank" id="cse-search-box">
-  <div>
-    <input type="hidden" name="cx" value="{% if g_blog.google_cse_cx %}{{g_blog.google_cse_cx|safe}}{% else %}009677936332633277893:-nyho-cdiwa{% endif %}" />
-    <input type="hidden" name="ie" value="UTF-8" />
-    <input type="text" name="q" size="28" />
-    <input type="submit" name="sa" value="{% trans 'Go' %}" />
-  </div>
-</form>
-
 {% if user.is_authenticated %}
 <div class="wrap_top">
 <h2>{% trans "Administration" %}</h2>

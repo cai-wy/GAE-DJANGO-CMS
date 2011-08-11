@@ -2,25 +2,26 @@ body {background-color:#f2f0dc;}
 a {text-decoration:None;color:#5d5b46;}
 a:hover {color:#000;text-decoration:underline;}
 #hd {background:url('/media/images/gae_logo_cn.gif') #212121 10px center no-repeat;margin-bottom:10px;}
-#hd h1{color:#f9f7d1;margin:15px 5px 5px 70px;}
+#hd h1{color:#f9f7d1;margin:15px 15px 15px 70px;}
 #hd h1 a{color:#ddd;}
 #hd h1 a:hover{color:#fff;text-decoration:none;}
 #hd h1 em{color:#ccc;font-size:small;}
 #hd #headtop {padding:3px 10px 3px; color:#ccc; border-top:1px solid #e50000; border-bottom:1px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;text-align:right;}
 #hd #headtop a {color:#fff;}
 #hd #headtop a:hover {text-decoration:underline;}
-#hd .nav {color:#fff;float:right;list-style-type: none;margin: 0px;padding: 0px;height: 26px;line-height: 30px;border:None;}
-#hd .nav li {display: block;padding: 0px;float: left;background: #3a8bcd;margin-right:1px;}
-#hd .nav li a {display: block;padding: 0px 5px 0px 5px;text-decoration: none;color: #fff;font-size: 13px;font-weight: 600;}
+#hd .nav {color:#fff;float:left;list-style-type: none;margin: 0px;padding: 0px;height: 27px;line-height: 25px;border:None;}
+#hd .nav li {display: block;padding: 0px;float: left;margin-right:3px;color:#ccc; border-top:1px solid #e50000; border-bottom:1px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;}
+#hd .nav li a {display: block;padding: 0px 15px 0px 15px;text-decoration: none;color: #eee;font-size: 13px;font-weight: 600;}
 #hd .nav li a:hover {color: #fff;background: #cb1b1b;}
 #hd .nav .curselect {color: #fff;background: #cb1b1b;}
+#hd .searchbox {float: right;clear: right;margin-right:5px}
 
 #bd {margin-bottom:10px;}
 #bd h2 {color:#ccc;margin:0px;padding:3px 0px 3px 8px;font-size:large;}
 #bd h2 a{color:#d80000;}
 #bd h2 a:hover{color:#7E0202;text-decoration:none;}
 
-#bd #yui-main {}
+#bd #yui-main {margin-top:0px;}
 
 #ggad_index {text-align:center;margin-bottom:10px;}
 #ggad_index2 {text-align:center;margin-bottom:10px;}
@@ -136,7 +137,7 @@ overflow: hidden;
 #sidebar a {color:#5d5b46;}
 #sidebar a:hover {text-decoration:underline;color:#000;}
 #sidebar .wrap_top {background:url(/media/images/siderbg.gif) 0 0 no-repeat #FEFDF0;margin-bottom:10px;border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
-#sidebar .wrap_top h2 {color:#d80000;margin:3px;padding:12px 0px 8px 12px;font-size:large;}
+#sidebar .wrap_top h2 {color:#d80000;margin:0px,3px,3px,3px;padding:12px 0px 8px 12px;font-size:large;}
 #sidebar .wrap_list {margin-left:6px;padding:8px 0px 0px 0px;}
 #sidebar .wrap_list li {list-style:none;BACKGROUND: url(/media/images/left_menu_bullet.gif) no-repeat left center;padding-left:14px;margin-bottom:7px;}
 #sidebar .wrap_list .comment {list-style:none;BACKGROUND: url(/media/images/icon_comments.gif) no-repeat left center;padding-left:16px;margin-bottom:7px;
