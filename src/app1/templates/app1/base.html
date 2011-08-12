@@ -51,7 +51,15 @@
 {%endif%}
 
 <div class="wrap_top">
-<h2>{% trans "Finance Guider" %}</h2>
+<h2>{% trans "Categories" %}</h2>
+<ul class="wrap_list">
+{%for each in all_categories%}
+<li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
+</ul>
+</div>
+
+<div class="wrap_top">
+<h2>{% trans "TAGS" %}</h2>
 <ul class="wrap_list">
 {%for each in all_categories%}
 <li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
