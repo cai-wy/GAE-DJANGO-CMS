@@ -30,43 +30,37 @@
 </div>
 
 <div class="yui-b" id="sidebar">
-{% if user.is_authenticated %}
+{% if user.is_superuser %}
 <div class="wrap_top">
 <h2>{% trans "Administration" %}</h2>
 <ul class="wrap_list">
 <li><a href="{% url app1.views.add_article %}">{% trans "Add Article" %}</a></li>
 <li><a href="{% url app1.views.myarticles %}">{% trans "My articles" %}</a></li>
-{% if user.is_superuser %}
 <li><a href="{% url app1.views.lastcomments %}">{% trans "Recent comments" %}</a></li>
 <li><a href="/admin/app1/">{% trans "Django administration" %}</a></li>
-{%endif%}
 </ul>
 </div>
 {%endif%}
 
+
+{%if g_blog.display_ngp%}
 <div class="wrap_top">
-<h2>{% trans "Category List" %}</h2>
+<h2>{% trans "Finance Market" %}</h2>
+<script src="http://widgets.macroaxis.com/widgets/url.jsp?t=26&s=FTSE,000001.SS,HSI,N225,NYA,IXIC,GSPC"></script>
+</div>
+{%endif%}
+
+<div class="wrap_top">
+<h2>{% trans "Finance Guider" %}</h2>
 <ul class="wrap_list">
 {%for each in all_categories%}
 <li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
 </ul>
 </div>
 
-{%if g_blog.display_ngp%}
-<div class="wrap_top">
-<h2>{% trans "NGP Photo of day" %}</h2>
-{% cache 600 ngp %}
-<p style="text-align:center;">
-<a href="http://www.national-geographic-photo.com/" target="_blank" title="{% trans 'Click here to view full size' %}">
-<img src='http://www.national-geographic-photo.com/showimg' alt="{% trans 'NGP Photo of day' %}" width="200" height="150" style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none;" /></a>
-</p>
-{% endcache %}
-</div>
-{%endif%}
-
 {%if newcomment_list%}
 <div class="wrap_top">
-<h2>{% trans "Recent Comment" %}</h2>
+<h2>{% trans "Recent Comments" %}</h2>
 <ul class="wrap_list">
 {%for each in newcomment_list%}
 <li class="comment">{{each.name}}@<a href="{{each.entry.get_absolute_url}}#{{each.key.id}}" title='{{each.message|slice:":100"}}' target="_blank">{{each.entry.title|safe}}</a></li>{%endfor%}
