@@ -68,16 +68,6 @@
 </div>
 {%endif%}
 
-{%if links_list%}
-<div class="wrap_top">
-<h2>{% trans "Links" %}</h2>
-<ul class="wrap_list">
-{%for each in links_list%}
-<li class="link"><a href="{{each.url}}" title="{{each.name}}" target="_blank" rel="nofollow">{{each.name}}</a></li>{%endfor%}
-</ul>
-</div>
-{%endif%}
-
 </div>
 
 {% endblock %}
