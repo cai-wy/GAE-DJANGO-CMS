@@ -30,7 +30,7 @@
 {%endif%}
 
 <div class="clear"></div>
-<div id="contenct">
+<div id="content">
 {{obj.content|safe}}
 <p class="permalink">{% trans "Permalink" %} http://{{current_site.domain}}{{obj.short_url}}</p>
 <p>{% trans "Categories" %} <a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a> 

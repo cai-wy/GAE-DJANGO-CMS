@@ -1,4 +1,5 @@
-body {background-color:#F4F2E0;}
+body {background-color:#F0F0F0;}
+#custom-doc {background-color:#F4F2E0;}
 a {text-decoration:None;color:#5d5b46;}
 a:hover {color:#000;text-decoration:underline;}
 #hd {background: #484848 10px center no-repeat;margin-bottom:10px;}
@@ -69,19 +70,19 @@ text-overflow:ellipsis;
 overflow: hidden;
 }
 
-#contenct {background-color:#FEFDF0;padding:0px 30px 10px 30px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
-#contenct a {text-decoration:none;color:#7E0202;}
-#contenct a:hover {text-decoration:underline;color:#d80000;}
-#contenct ul {margin-left:20px;}
-#contenct ul li {margin-bottom:6px;}
+#content {background-color:#FEFDF0;padding:0px 30px 10px 30px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
+#content a {text-decoration:none;color:#7E0202;}
+#content a:hover {text-decoration:underline;color:#d80000;}
+#content ul {margin-left:20px;}
+#content ul li {margin-bottom:6px;}
 
-#bbscontenct {background-color:#FEFDF0;padding:0px 10px 10px 10px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
-#bbscontenct a {text-decoration:none;color:#7E0202;}
-#bbscontenct a:hover {text-decoration:underline;color:#d80000;}
-#bbscontenct ul {margin-left:20px;}
-#bbscontenct ul li {margin-bottom:6px;}
-#bbscontenct .author {background-color:#f2f0dc;float:left;margin:0px;font-weight:bold;padding:0px 10px 0px 10px;line-height:160%;width:80px;}
-#bbscontenct .artcon {float:left;margin:0px 0px 0px 10px;padding:0px;width:81%;}
+#bbscontent {background-color:#FEFDF0;padding:0px 10px 10px 10px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
+#bbscontent a {text-decoration:none;color:#7E0202;}
+#bbscontent a:hover {text-decoration:underline;color:#d80000;}
+#bbscontent ul {margin-left:20px;}
+#bbscontent ul li {margin-bottom:6px;}
+#bbscontent .author {background-color:#f2f0dc;float:left;margin:0px;font-weight:bold;padding:0px 10px 0px 10px;line-height:160%;width:80px;}
+#bbscontent .artcon {float:left;margin:0px 0px 0px 10px;padding:0px;width:81%;}
 
 #con_articlelist ul li {list-style:none;margin-bottom:8px;padding:18px 18px 8px 0px;background:url(/media/images/articletopbg.gif) 0 0 no-repeat #FEFDF0;padding-left:24px;border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
 #con_articlelist h3 {BACKGROUND: url(/media/images/arrow.gif) no-repeat left center;padding:2px 2px 2px 14px ;
@@ -134,32 +135,32 @@ overflow: hidden;
 .artlist_ggad {text-align:center;}
 
 #sidebar {margin-top:0px;}
-#sidebar a {color:#5d5b46;}
-#sidebar a:hover {text-decoration:underline;color:#000;}
-#sidebar .wrap_top {background:url(/media/images/siderbg.gif) 0 0 no-repeat #FEFDF0;margin-bottom:10px;border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
-#sidebar .wrap_top h2 {color:#d80000;margin:0px,3px,3px,3px;padding:12px 0px 8px 12px;font-size:large;}
-#sidebar .wrap_list {margin-left:6px;padding:8px 0px 0px 0px;}
-#sidebar .wrap_list li {list-style:none;BACKGROUND: url(/media/images/left_menu_bullet.gif) no-repeat left center;padding-left:14px;margin-bottom:7px;}
-#sidebar .wrap_list a:hover {text-decoration:underline;color:#d80000;}
-#sidebar .wrap_list a.size-1 { font-size: 1.2em; font-weight:bold; color:686868;}
-#sidebar .wrap_list a.size-2 { font-size: 1.4em; font-weight:bold; color:686868;}
-#sidebar .wrap_list a.size-3 { font-size: 1.6em; font-weight:bold; color:686868;}
-#sidebar .wrap_list a.size-4 { font-size: 1.8em; font-weight:bold; color:686868;}
-#sidebar .wrap_list a.size-5 { font-size: 2.0em; font-weight:bold; color:686868;}
-#sidebar .wrap_list a.size-6 { font-size: 2.2em; font-weight:bold; color:686868;}
-#sidebar .wrap_list .comment {list-style:none;BACKGROUND: url(/media/images/icon_comments.gif) no-repeat left center;padding-left:16px;margin-bottom:7px;
+#sidebar a {color:#686868; font-weight:bold;}
+#sidebar a:hover {text-decoration:underline;color:#686868;}
+#sidebar .sidebar_block {background:url(/media/images/siderbg.gif) 0 0 no-repeat #FEFDF0;margin-bottom:10px;border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
+#sidebar .sidebar_block h2 {color:#d80000; font-weight:bold; margin:0px,3px,3px,3px;padding:12px 0px 8px 12px;font-size:large;}
+#sidebar .sidebar_list {margin-left:6px;padding:8px 0px 0px 0px;}
+#sidebar .sidebar_list li {list-style:none;BACKGROUND: url(/media/images/left_menu_bullet.gif) no-repeat left center;padding-left:14px;margin-bottom:7px;}
+#sidebar .sidebar_list a:hover {text-decoration:underline;color:#d80000;}
+#sidebar .sidebar_list a.size-1 { font-size: 1.2em; font-weight:bold; color:686868;}
+#sidebar .sidebar_list a.size-2 { font-size: 1.4em; font-weight:bold; color:686868;}
+#sidebar .sidebar_list a.size-3 { font-size: 1.6em; font-weight:bold; color:686868;}
+#sidebar .sidebar_list a.size-4 { font-size: 1.8em; font-weight:bold; color:686868;}
+#sidebar .sidebar_list a.size-5 { font-size: 2.0em; font-weight:bold; color:686868;}
+#sidebar .sidebar_list a.size-6 { font-size: 2.2em; font-weight:bold; color:686868;}
+#sidebar .sidebar_list .comment { list-style:none;BACKGROUND: url(/media/images/icon_comments.gif) no-repeat left center;padding-left:16px;margin-bottom:7px;color:#383838;
 width: 95%;
 white-space:nowrap;
 text-overflow:ellipsis;
 -o-text-overflow:ellipsis;
 overflow: hidden;
 }
-#sidebar .wrap_list .link {list-style:none;BACKGROUND: url(/media/images/link.gif) no-repeat left center;padding-left:18px;margin-bottom:7px;}
+#sidebar .sidebar_list .link {list-style:none;BACKGROUND: url(/media/images/link.gif) no-repeat left center;padding-left:18px;margin-bottom:7px;}
 
-#ft {background-color: #3b3b3b;margin:0px;}
+#ft {background-color: #585858;margin:0px;}
 #ft p {color:#999;padding:8px;margin:8px;line-height:160%;}
-#ft a{color:#ccc;}
-#ft a:hover{color:#fff;text-decoration:underline;}
+#ft a {color:#ccc;}
+#ft a:hover {color:#fff;text-decoration:underline;}
 
 #np {margin-bottom:10px;height:20px;padding:10px;border-bottom:1px solid #CDCAA3;}
 #np .flleft , #np .flright {width: 49%;

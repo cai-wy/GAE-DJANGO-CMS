@@ -31,9 +31,9 @@
 
 <div class="yui-b" id="sidebar">
 {% if user.is_superuser %}
-<div class="wrap_top">
+<div class="sidebar_block">
 <h2>{% trans "Administration" %}</h2>
-<ul class="wrap_list">
+<ul class="sidebar_list">
 <li><a href="{% url app1.views.add_article %}">{% trans "Add Article" %}</a></li>
 <li><a href="{% url app1.views.myarticles %}">{% trans "My articles" %}</a></li>
 <li><a href="{% url app1.views.lastcomments %}">{% trans "Recent comments" %}</a></li>
@@ -43,9 +43,9 @@
 {%endif%}
 
 
-<div class="wrap_top">
-<h2>{% trans "TAGS" %}</h2>
-<ul class="wrap_list">
+<div class="sidebar_block">
+<h2>{% trans "Tags" %}</h2>
+<ul class="sidebar_list">
 {%for each in popular_tags%}
 <a href="{% url app1.views.tag_article each %}"  class = "size-{{ each.style }}" title="{{each|safe}}" >{{each|safe}}</a>
 {%endfor%}
@@ -53,26 +53,26 @@
 </div>
 
 {%if g_blog.display_ngp%}
-<div class="wrap_top">
+<div class="sidebar_block">
 <h2>{% trans "Finance Market" %}</h2>
 <script src="http://widgets.macroaxis.com/widgets/url.jsp?t=26&s=FTSE,000001.SS,HSI,N225,NYA,IXIC,GSPC"></script>
 </div>
 {%endif%}
 
-<div class="wrap_top">
+<div class="sidebar_block">
 <h2>{% trans "Categories" %}</h2>
-<ul class="wrap_list">
+<ul class="sidebar_list">
 {%for each in all_categories%}
 <li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
 </ul>
 </div>
 
 {%if newcomment_list%}
-<div class="wrap_top">
+<div class="sidebar_block">
 <h2>{% trans "Recent Comments" %}</h2>
-<ul class="wrap_list">
+<ul class="sidebar_list">
 {%for each in newcomment_list%}
-<li class="comment">{{each.name}}@<a href="{{each.entry.get_absolute_url}}#{{each.key.id}}" title='{{each.message|slice:":100"}}' target="_blank">{{each.entry.title|safe}}</a></li>{%endfor%}
+<li class="comment">{{each.name}}@ <a href="{{each.entry.get_absolute_url}}#{{each.key.id}}" title='{{each.message|slice:":100"}}' target="_blank">{{each.entry.title|safe}}</a></li>{%endfor%}
 </ul>
 </div>
 {%endif%}
