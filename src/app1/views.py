@@ -77,11 +77,12 @@ def get_tags():
         maxcount = objects[0].entrycount
         mincount = objects[len(objects) - 1].entrycount
         distrib = (maxcount - mincount) / 5
-        if distrib == 0: distrib = 1
+        if distrib == 0: 
+            distrib = 1
         for each in objects:
             each.style = (each.entrycount - mincount)/distrib + 1
-        objects.sort(lambda a,b:random.randint(-1,1))
-        memcache.add(tags_key, objects,memtime)
+        memcache.add(tags_key, objects, memtime)
+    random.shuffle(objects)
     base_values['popular_tags'] = objects
     return objects
 

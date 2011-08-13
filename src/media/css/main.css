@@ -1,19 +1,19 @@
 body {background-color:#F4F2E0;}
 a {text-decoration:None;color:#5d5b46;}
 a:hover {color:#000;text-decoration:underline;}
-#hd {background: #212121 10px center no-repeat;margin-bottom:10px;}
+#hd {background: #484848 10px center no-repeat;margin-bottom:10px;}
 #hd h1{color:#f9f7d1;margin:15px 15px 15px 15px;}
 #hd h1 a{color:#ddd;}
 #hd h1 a:hover{color:#fff;text-decoration:none;}
 #hd h1 em{color:#ccc;font-size:small;}
-#hd #headtop {padding:3px 10px 3px; color:#ccc; border-top:2px solid #e50000; border-left:2px solid #e50000;border-bottom:1px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;text-align:right;}
+#hd #headtop {padding:3px 10px 3px; color:#ccc; border-top:2px solid #e50000; border-left:2px solid #e50000;border-bottom:1px solid #383838; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;text-align:right;}
 #hd #headtop a {color:#fff;}
 #hd #headtop a:hover {text-decoration:underline;}
 #hd .nav {color:#fff;float:left;list-style-type: none;margin: 0px;padding: 0px;height: 29px;line-height: 25px;border:None;}
-#hd .nav li {display: block;padding: 0px;float: left;margin-right:5px;color:#ccc; border-top:2px solid #e50000;border-left:2px solid #e50000; border-bottom:2px solid #4c0000; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;}
+#hd .nav li {display: block;padding: 0px;float: left;margin-right:5px;color:#ccc; border-top:2px solid #e50000;border-left:2px solid #e50000; border-bottom:2px solid #383838; background:#800000 url('/media/images/head-bg.gif') top center repeat-x;}
 #hd .nav li a {display: block;padding: 0px 15px 0px 15px;text-decoration: none;color: #eee;font-size: 13px;font-weight: 600;}
-#hd .nav li a:hover {color: #fff;background: #cb1b1b;}
-#hd .nav .curselect {color: #fff;background: #cb1b1b;}
+#hd .nav li a:hover {text-decoration:underline;color: #fff;background: #cb1b1b;}
+#hd .nav .curselect {color: #fff;}
 #hd .searchbox {float: right;margin-right:5px;}
 
 #bd {margin-bottom:10px;}
@@ -141,12 +141,12 @@ overflow: hidden;
 #sidebar .wrap_list {margin-left:6px;padding:8px 0px 0px 0px;}
 #sidebar .wrap_list li {list-style:none;BACKGROUND: url(/media/images/left_menu_bullet.gif) no-repeat left center;padding-left:14px;margin-bottom:7px;}
 #sidebar .wrap_list a:hover {text-decoration:underline;color:#d80000;}
-#sidebar .wrap_list a.size-1 { font-size: 1.2em; font-weight:bold; color:888888;}
-#sidebar .wrap_list a.size-2 { font-size: 1.4em; font-weight:bold; color:888888;}
-#sidebar .wrap_list a.size-3 { font-size: 1.6em; font-weight:bold; color:888888;}
-#sidebar .wrap_list a.size-4 { font-size: 1.8em; font-weight:bold; color:888888;}
-#sidebar .wrap_list a.size-5 { font-size: 2.0em; font-weight:bold; color:888888;}
-#sidebar .wrap_list a.size-6 { font-size: 2.2em; font-weight:bold; color:888888;}
+#sidebar .wrap_list a.size-1 { font-size: 1.2em; font-weight:bold; color:686868;}
+#sidebar .wrap_list a.size-2 { font-size: 1.4em; font-weight:bold; color:686868;}
+#sidebar .wrap_list a.size-3 { font-size: 1.6em; font-weight:bold; color:686868;}
+#sidebar .wrap_list a.size-4 { font-size: 1.8em; font-weight:bold; color:686868;}
+#sidebar .wrap_list a.size-5 { font-size: 2.0em; font-weight:bold; color:686868;}
+#sidebar .wrap_list a.size-6 { font-size: 2.2em; font-weight:bold; color:686868;}
 #sidebar .wrap_list .comment {list-style:none;BACKGROUND: url(/media/images/icon_comments.gif) no-repeat left center;padding-left:16px;margin-bottom:7px;
 width: 95%;
 white-space:nowrap;
