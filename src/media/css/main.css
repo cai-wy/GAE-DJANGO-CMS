@@ -140,6 +140,13 @@ overflow: hidden;
 #sidebar .wrap_top h2 {color:#d80000;margin:0px,3px,3px,3px;padding:12px 0px 8px 12px;font-size:large;}
 #sidebar .wrap_list {margin-left:6px;padding:8px 0px 0px 0px;}
 #sidebar .wrap_list li {list-style:none;BACKGROUND: url(/media/images/left_menu_bullet.gif) no-repeat left center;padding-left:14px;margin-bottom:7px;}
+#sidebar .wrap_list a:hover {text-decoration:underline;color:#d80000;}
+#sidebar .wrap_list a.size-1 { font-size: 1.2em; font-weight:bold; color:888888;}
+#sidebar .wrap_list a.size-2 { font-size: 1.4em; font-weight:bold; color:888888;}
+#sidebar .wrap_list a.size-3 { font-size: 1.6em; font-weight:bold; color:888888;}
+#sidebar .wrap_list a.size-4 { font-size: 1.8em; font-weight:bold; color:888888;}
+#sidebar .wrap_list a.size-5 { font-size: 2.0em; font-weight:bold; color:888888;}
+#sidebar .wrap_list a.size-6 { font-size: 2.2em; font-weight:bold; color:888888;}
 #sidebar .wrap_list .comment {list-style:none;BACKGROUND: url(/media/images/icon_comments.gif) no-repeat left center;padding-left:16px;margin-bottom:7px;
 width: 95%;
 white-space:nowrap;

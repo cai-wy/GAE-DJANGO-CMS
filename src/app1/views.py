@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import random
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from google.appengine.api import users
@@ -20,6 +21,7 @@ cur_app = "app1"
 
 ###
 categories_key = "key_all_categories"
+tags_key = "key_popular_tags"
 memtime=3600
 
 ###
@@ -62,6 +64,28 @@ def get_categories():
     return objects
 
 #get_categories()
+
+def get_tags():
+    """get popular tags"""
+    objects = memcache.get(tags_key)
+    if objects is None:
+        objects = Tag.all().order('-entrycount').fetch(200)
+        if len(objects)==0:
+            newobj = Tag(name = "Finance", entrycount = 1).put()
+            newobj = Tag(name = "Guide", entrycount = 1).put()
+            objects = Tag.all().order('-entrycount').fetch(2)
+        maxcount = objects[0].entrycount
+        mincount = objects[len(objects) - 1].entrycount
+        distrib = (maxcount - mincount) / 5
+        if distrib == 0: distrib = 1
+        for each in objects:
+            each.style = (each.entrycount - mincount)/distrib + 1
+        objects.sort(lambda a,b:random.randint(-1,1))
+        memcache.add(tags_key, objects,memtime)
+    base_values['popular_tags'] = objects
+    return objects
+
+#get_tags()
 
 def gae_ads():
     objects = memcache.get("all_ads_key")
@@ -134,6 +158,7 @@ def generate(request, template_name, template_values={}):
     base_values['current_site'] = get_current_site(request)
     get_categories()
     get_lastcomments()
+    get_tags()
     #
     base_values.update(template_values)
     return render_to_response(request,"%s/%s"%(cur_app,template_name),base_values)

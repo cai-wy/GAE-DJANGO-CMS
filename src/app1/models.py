@@ -69,6 +69,7 @@ class Tag(db.Model):#key_tag
     tag = db.StringProperty(multiline=False)
     entrycount = db.IntegerProperty(default=0)
     post_keys = db.ListProperty(db.Key)
+    style = db.IntegerProperty(default=1)
     
     def __unicode__(self):
         return self.tag
@@ -82,6 +83,19 @@ class Tag(db.Model):#key_tag
             memcache.add(men_key, men_data, 3600)
         return men_data
     
+#    @permalink
+#    def get_absolute_url(self):
+#        if self.slug:
+#            title = self.slug.replace(' ','_')
+#        else:
+#            title = self.name.strip()
+#            title = title.replace(' ','_')
+#            title = title.replace(',','_')
+#            title = title.replace(u'，','_')
+#            title = title.replace("/","%2f")
+#            title = title.replace("%","%25")
+#        return ('app1.views.tag_article', (), {'tag':self.tag})    
+
 class Profile(db.Model):#key_email
     author = db.ReferenceProperty(User, collection_name='user_profile')
     displayname = db.StringProperty(required=True)
