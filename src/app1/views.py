@@ -69,7 +69,7 @@ def get_tags():
     """get popular tags"""
     objects = memcache.get(tags_key)
     if objects is None:
-        objects = Tag.all().order('-entrycount').fetch(200)
+        objects = Tag.all().order('-entrycount').fetch(50)
         if len(objects)==0:
             newobj = Tag(name = "Finance", entrycount = 1).put()
             newobj = Tag(name = "Guide", entrycount = 1).put()

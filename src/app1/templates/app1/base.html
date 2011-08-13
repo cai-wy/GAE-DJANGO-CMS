@@ -43,6 +43,15 @@
 {%endif%}
 
 
+<div class="wrap_top">
+<h2>{% trans "TAGS" %}</h2>
+<ul class="wrap_list">
+{%for each in popular_tags%}
+<a href="{% url app1.views.tag_article each %}"  class = "size-{{ each.style }}" title="{{each|safe}}" >{{each|safe}}</a>
+{%endfor%}
+</ul>
+</div>
+
 {%if g_blog.display_ngp%}
 <div class="wrap_top">
 <h2>{% trans "Finance Market" %}</h2>
@@ -55,15 +64,6 @@
 <ul class="wrap_list">
 {%for each in all_categories%}
 <li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
-</ul>
-</div>
-
-<div class="wrap_top">
-<h2>{% trans "TAGS" %}</h2>
-<ul class="wrap_list">
-{%for each in popular_tags%}
-<a href="{% url app1.views.tag_article each %}"  class = "size-{{ each.style }}" title="{{each|safe}}" >{{each|safe}}</a>
-{%endfor%}
 </ul>
 </div>
 
