@@ -5,7 +5,30 @@
 <!-- Load jQuery -->
 <script type="text/javascript" src="{%if g_blog.googlejquery%}{{g_blog.googlejquery|safe}}{%else%}/media/js/jquery.min.js{%endif%}"></script>
 <script type="text/javascript" src="/media/js/slides.min.jquery.js"></script>
-
+<script type="text/javascript">
+function slideSwitch() {
+	var $current = $("#slideshow div.current");
+	
+	// 判断div.current个数为0的时候 $current的取值
+	if ( $current.length == 0 ) $current = $("#slideshow div:last");
+	
+	// 判断div.current存在时则匹配$current.next(),否则转到第一个div
+	var $next =  $current.next().length ? $current.next() : $("#slideshow div:first");
+	$current.addClass('prev');
+	
+	$next.css({opacity: 0.0}).addClass("current").animate({opacity: 1.0}, 1000, function() {
+			//因为原理是层叠,删除类,让z-index的值只放在轮转到的div.current,从而最前端显示
+			$current.removeClass("current prev");
+		});
+}
+$(function() {
+	$("#slideshow span").css("opacity","0.7");
+	$(".current").css("opacity","1.0");
+	
+	// 设定时间为3秒(1000=1秒)
+    setInterval( "slideSwitch()", 3000 ); 
+});
+</script>
 {% endblock %}
 
 {% block subtitle %}{{ g_blog.title }}{% endblock %}
@@ -19,7 +42,7 @@
 <div class="yui-b" id="conmain_index">
 <div class="yui-g">
     <div class="yui-u first" id="ggad_index">
-    {%if ads_index_left_top%}{{ads_index_left_top|safe}}{%endif%}
+    {%if ads_index_focus_slideshow%}{{ads_index_focus_slideshow|safe}}{%endif%}
     </div>
     <div class="yui-u cate">
     <h2>{% trans "Recent posts" %} <A title="{% trans 'RSS Feed' %}" href="{% url app1.views.rsslatest%}" target="_blank"><IMG title="{% trans 'RSS Feed' %}" src="/media/images/rss.gif" alt="{% trans 'RSS Feed' %}"></A></h2>

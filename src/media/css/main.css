@@ -178,3 +178,12 @@ overflow: hidden;
 .signtext {margin:0px;padding:0px;border-top:1px dotted #CDCAA3;color:#999;}
 .messagecon {min-height:52px;}
 .permalink {background-color:#f2f0dc;}
+
+#slideshowborder{position:relative;height:290px;width:346px; margin:0 auto 10px; border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
+#slideshow{position:relative;height:280px;width:336px;border:5px solid #FFF;margin:0 auto 10px;}
+#slideshow div{position:absolute;top:0;left:0;z-index:8;opacity:0.0;width:336px; height:280px;overflow:hidden;background-color:#FFF;}
+#slideshow div.current{z-index:10;}
+#slideshow div.prev{z-index:9;}
+#slideshow div img{display:block;border:0;margin-bottom:10px;height:100%;width:100%;}
+#slideshow div span{display:none;position:absolute;bottom:0;left:0;height:40px;line-height:40px;background:#000;color:#fff;width:100%;}
+#slideshow div.current span{display:block;}
