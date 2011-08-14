@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="/media/blueprintcss/forms.css" type="text/css" />
     <link rel="stylesheet" href="/media/css/main.css" type="text/css" />
     {% endblock %}
-    {% block js %}{% endblock %}
+    {% block js %}
+    <!-- Load jQuery -->
+	<script type="text/javascript" src="{%if g_blog.googlejquery%}{{g_blog.googlejquery|safe}}{%else%}/media/js/jquery.min.js{%endif%}"></script>
+    {% endblock %}
     {% block extra-head %}{% endblock %}    
 </head>
 <body>

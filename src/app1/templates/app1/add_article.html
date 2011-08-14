@@ -3,8 +3,6 @@
 {% block subtitle %}{% if obj %}{% trans 'Apply changes' %}{% else %}{% trans 'Create' %}{% endif %}{% endblock %}
 
 {% block content_main %}
-<!-- Load jQuery -->
-<script type="text/javascript" src="{%if g_blog.googlejquery%}{{g_blog.googlejquery|safe}}{%else%}/media/js/jquery.min.js{%endif%}"></script>
 
 <!-- Load TinyMCE -->
 <script type="text/javascript" src="/tiny_mce/jquery.tinymce.js"></script>

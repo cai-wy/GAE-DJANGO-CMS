@@ -12,7 +12,7 @@ class Baseset(db.Model):
     subtitle = db.StringProperty(multiline=False,default='Something free to you.')
     description = db.TextProperty(default='This is a GAE app.')
     keywords = db.StringProperty(multiline=False,default='free,share')
-    googlejquery = db.StringProperty(multiline=False,default='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js')
+    googlejquery = db.StringProperty(multiline=False,default='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     head_metas = db.TextProperty(default='')
     analytics = db.TextProperty(default='')
     admin_email = db.StringProperty(multiline=False,default='your_appID_admin@gmail.com')
