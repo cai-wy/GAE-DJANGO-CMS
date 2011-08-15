@@ -38,6 +38,11 @@ handlers:
   static_dir: media
   secure: optional
 
+- url: /.*_.*/.*
+  script: common/appenginepatch/main.py
+  secure: optional
+  login: admin
+
 - url: /.*
   script: common/appenginepatch/main.py
   secure: optional
