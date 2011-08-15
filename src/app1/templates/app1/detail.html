@@ -14,17 +14,17 @@
 <h2><a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a> &raquo; <span title="{{obj.title|safe}}">{{obj.title|safe}}</span></h2>
 
 {% if obj.profile.pub_ads %}
-<div class="yui-u first" id="ggad_index">
+<div class="yui-u first" id="detail_ad1">
 {{obj.profile.art_left|safe}}
 </div>
-<div class="yui-u" id="ggad_index2">
+<div class="yui-u" id="detail_ad2">
 {{obj.profile.art_right|safe}}
 </div>
 {% else %}
-{%if ads_articledetail_left_top%}<div class="yui-u first" id="ggad_index">
+{%if ads_articledetail_left_top%}<div class="yui-u first" id="detail_ad1">
 {{ads_articledetail_left_top|safe}}
 </div>{%endif%}
-{%if ads_articledetail_right_top%}<div class="yui-u" id="ggad_index2">
+{%if ads_articledetail_right_top%}<div class="yui-u" id="detail_ad2">
 {{ads_articledetail_right_top|safe}}
 </div>{%endif%}
 {%endif%}
