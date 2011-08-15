@@ -9,9 +9,9 @@
 
 {% block content_main %}
 <div class="yui-b">
-<div class="yui-g" id="artlist_top">
+<div class="yui-g" id="articlelist_top">
     <h2 title="{{obj|safe}}">{{obj|safe}}</h2>
-    {%if ads_articlelist_top%}<div class="artlist_ggad">{{ads_articlelist_top|safe}}</div>{%endif%}
+    {%if ads_articlelist_top%}<div class="articlelist_ad">{{ads_articlelist_top|safe}}</div>{%endif%}
 </div>
 
 <div class="yui-g">
@@ -21,16 +21,20 @@
 {%for each in cur_articlelist%}{%if each%}
 <li>
 <h3><a href="{{each.get_absolute_url}}" title="{{each.title|safe}}">{{each.title|safe}}</a></h3>
-<p>{% trans "Categories" %} <a href="{{each.category.get_absolute_url}}" title="{{each.category.name}}">{{each.category.name|safe}}</a> {%if each.tags%}{% trans "Tags" %}: {%for tag in each.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a>{% if not forloop.last %}, {% endif %}{%endfor%}{%endif%} {% trans "Author" %}: <a href="{{each.profile.get_absolute_url}}" title="{{each.profile.displayname|safe}} {% trans 'Profile' %}">{{each.profile.displayname|safe}}</a> {% trans "Date" %}: {{each.pub_time|date:"d/m/Y"}}</p>
-<p>{{each.abstract|safe}}</p>
-<p class="more"><a href="{{each.get_absolute_url}}" rel="nofollow">{% trans "Read more" %}</a></p>
-</li>{%endif%}{%endfor%}
+<p>{% trans "Category:" %} <a href="{{each.category.get_absolute_url}}" title="{{each.category.name}}">{{each.category.name|safe}}</a>&nbsp&nbsp{%if each.tags%}{% trans " Tags" %}: {%for tag in each.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a> {% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}&nbsp&nbsp{% trans " Author: " %}<a href="{{each.profile.get_absolute_url}}" title="{{each.profile.displayname|safe}} {% trans 'Profile' %}">{{each.profile.displayname|safe}}</a>&nbsp&nbsp{% trans " Date" %}: {{each.pub_time|date:"d/m/Y"}}</p>
+<p class="abstract">{{each.abstract|safe}}</p>
+<p class="more"><a href="{{each.get_absolute_url}}" rel="nofollow">{% trans "read more..." %}</a></p>
+</li>{%endif%}
+{% if forloop.first or forloop.last %}
+{%if ads_articlelist_linkad%}<div class="articlelist_ad">{{ads_articlelist_linkad|safe}}</div>{%endif%}
+{% endif %}
+{%endfor%}
 </ul>
 {%if pagination_div%}{{ pagination_div|safe }}{%endif%}
 </div>
 
 </div>
-
+{%if ads_articlelist_bottom%}<div class="articlelist_ad">{{ads_articlelist_bottom|safe}}</div>{%endif%}
 </div>
 
 {% endblock %}

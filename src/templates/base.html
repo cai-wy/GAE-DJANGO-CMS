@@ -1,5 +1,4 @@
-{% load i18n %}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+{% load i18n %}<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
  "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
     dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
@@ -14,13 +13,10 @@
     #custom-doc { width:74.54em;*width:72.74em;width:969px;min-width:969px; margin:auto; text-align:left; }
     </style>   
     {% block css %}
-    <link rel="stylesheet" href="/media/blueprintcss/typography.css" type="text/css" />
-    <link rel="stylesheet" href="/media/blueprintcss/forms.css" type="text/css" />
     <link rel="stylesheet" href="/media/css/main.css" type="text/css" />
     {% endblock %}
     {% block js %}
-    <!-- Load jQuery -->
-	<script type="text/javascript" src="{%if g_blog.googlejquery%}{{g_blog.googlejquery|safe}}{%else%}/media/js/jquery.min.js{%endif%}"></script>
+    <script type="text/javascript" src="{%if g_blog.googlejquery%}{{g_blog.googlejquery|safe}}{%else%}/media/js/jquery.min.js{%endif%}"></script>
     {% endblock %}
     {% block extra-head %}{% endblock %}    
 </head>

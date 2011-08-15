@@ -11,34 +11,26 @@
 <div class="yui-b">
 
 <div class="yui-g" id="articletop">
-<h2><a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a> &raquo; <span title="{{obj.title|safe}}">{{obj.title|safe}}</span></h2>
-
+<h2 title="{{obj.title|safe}}">{{obj.title|safe}}</h2>
 {% if obj.profile.pub_ads %}
 <div class="yui-u first" id="detail_ad1">
 {{obj.profile.art_left|safe}}
-</div>
-<div class="yui-u" id="detail_ad2">
-{{obj.profile.art_right|safe}}
 </div>
 {% else %}
 {%if ads_articledetail_left_top%}<div class="yui-u first" id="detail_ad1">
 {{ads_articledetail_left_top|safe}}
 </div>{%endif%}
-{%if ads_articledetail_right_top%}<div class="yui-u" id="detail_ad2">
-{{ads_articledetail_right_top|safe}}
-</div>{%endif%}
 {%endif%}
 
-<div class="clear"></div>
 <div id="content">
 {{obj.content|safe}}
+<div class="clear"></div>
 <p class="permalink">{% trans "Permalink" %} http://{{current_site.domain}}{{obj.short_url}}</p>
-<p>{% trans "Categories" %} <a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a> 
-{%if obj.tags%}{% trans "Tags" %}: {%for tag in obj.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a>{% if not forloop.last %}, {% endif %}{%endfor%}{%endif%} {% trans "Author" %}: <a href="{{obj.profile.get_absolute_url}}" title="{{obj.profile.displayname|safe}} {% trans 'Profile' %}" rel="nofollow">{{obj.profile.displayname|safe}}</a> {% trans "Date" %} {{obj.pub_time|date:"d/m/Y"}}</p>
-<ul> 
-	{% if obj.next %}<li>{% trans "Newer Post" %}: <a href="{{obj.next.get_absolute_url}}" title="{{obj.next.title}}">{{obj.next.title}}</a></li>{% endif %}
-	{% if obj.prev %}<li>{% trans "Older Post" %}: <a href="{{obj.prev.get_absolute_url}}" title="{{obj.prev.title}}">{{obj.prev.title}}</a></li>{% endif %}
-</ul>
+<div id="contentinfo">
+<p>{%if obj.tags%}{% trans " Tags" %}: {%for tag in obj.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a>{% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}</p>
+<p>{% trans "Category:" %} <a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a>&nbsp&nbsp
+{% trans " Author:" %} <a href="{{obj.profile.get_absolute_url}}" title="{{obj.profile.displayname|safe}} {% trans 'Profile' %}" rel="nofollow">{{obj.profile.displayname|safe}}</a>&nbsp&nbsp{% trans " Date:" %} {{obj.pub_time|date:"d/m/Y"}}</p>
+</div>
 {% if user.is_authenticated %}
 <p>{% if user.is_superuser %}
 {% trans "Administration" %}: <a href='{% url app1.views.edit_article key=obj.key %}'>{% trans "Edit" %}</a>
