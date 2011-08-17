@@ -25,8 +25,11 @@
 <p class="abstract">{{each.abstract|safe}}</p>
 <p class="more"><a href="{{each.get_absolute_url}}" rel="nofollow">{% trans "read more..." %}</a></p>
 </li>{%endif%}
-{% if forloop.first or forloop.last %}
-{%if ads_articlelist_linkad%}<div class="articlelist_ad">{{ads_articlelist_linkad|safe}}</div>{%endif%}
+{% if forloop.first %}
+{%if ads_articlelist_linkad1%}<div class="articlelist_ad1">{{ads_articlelist_linkad1|safe}}</div>{%endif%}
+{% endif %}
+{% if forloop.last %}
+{%if ads_articlelist_linkad2%}<div class="articlelist_ad1">{{ads_articlelist_linkad2|safe}}</div>{%endif%}
 {% endif %}
 {%endfor%}
 </ul>

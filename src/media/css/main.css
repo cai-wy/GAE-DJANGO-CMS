@@ -233,10 +233,10 @@ text-overflow:ellipsis;
 overflow: hidden;
 }
 
-#content {background-color:#FEFDF0;padding:0px 30px 10px 30px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
+#content {background-color:#FEFDF0;padding:0px 10px 10px 5px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
 #content a {text-decoration:underline;color:#d80000;}
 #content a:hover {text-decoration:underline;color:#d80000;}
-#content ul {margin-left:20px;}
+#content ul {margin-left:10px;}
 #content ul li {margin-bottom:6px;}
 #contentinfo p {font-weight:bold;margin-top:5px;margin-bottom:5px;}
 #contentinfo p a {color:#484848;font-weight:normal;text-decoration:underline;}
@@ -278,7 +278,6 @@ overflow: hidden;
 
 #articlelist_top h2 .addpost {color:#880;BACKGROUND: url(/media/images/icon_addlink.gif) no-repeat left center;padding-left:15px;margin-left:10px;}
 #articlelist_top h2 .addpost:hover{color:#800;text-decoration:none;}
-
 #bbsarticlelist_top h2 .addpost {color:#880;BACKGROUND: url(/media/images/icon_addlink.gif) no-repeat left center;padding-left:15px;margin-left:10px;}
 #bbsarticlelist_top h2 .addpost:hover{color:#800;text-decoration:none;}
 
@@ -331,6 +330,7 @@ overflow: hidden;
 #ft p {color:#999;padding:8px;margin:8px;line-height:160%;}
 #ft a {color:#ccc;}
 #ft a:hover {color:#fff;text-decoration:underline;}
+#ft .searchbox2 {margin-left:15px;}
 
 #np {margin-bottom:10px;height:20px;padding:10px;border-bottom:1px solid #CDCAA3;}
 #np .flleft , #np .flright {width: 49%;

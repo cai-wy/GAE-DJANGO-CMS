@@ -99,8 +99,10 @@ def gae_ads():
             updata.append(Ads(name = "index_left_top", value = '<img src="/media/tmp/336x280.jpg"/>', description = "index left top Ads,best size is 336x280px"))
             updata.append(Ads(name = "articlelist_top", value = '<img src="/media/tmp/728x90.gif"/>', description = "list top Ads,best size is 728x90px"))
             updata.append(Ads(name = "articlelist_bottom", value = '<img src="/media/tmp/728x90.gif"/>', description = "list bottom Ads,best size is 728x90px"))
-            updata.append(Ads(name = "articlelist_linkad", value = 'link ads"/>', description = "list bottom Link Ads"))
+            updata.append(Ads(name = "articlelist_linkad1", value = 'link ads"/>', description = "list bottom Link Ads"))
+            updata.append(Ads(name = "articlelist_linkad2", value = 'link ads"/>', description = "list bottom Link Ads"))
             updata.append(Ads(name = "articledetail_left_top", value = '<img src="/media/tmp/336x280.jpg"/>', description = "articledetail left top Ads,best size is 336x280px"))
+            updata.append(Ads(name = "articledetail_linkad1", value = '<img src="/media/tmp/336x280.jpg"/>', description = "articledetail linkad 728x15px"))
             db.put(updata)
             objects = updata
         memcache.add("all_ads_key", objects,memtime*3)
