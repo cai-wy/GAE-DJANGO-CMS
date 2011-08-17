@@ -11,13 +11,13 @@ class Baseset(db.Model):
     title = db.StringProperty(multiline=False,default='Free to me')
     subtitle = db.StringProperty(multiline=False,default='Something free to you.')
     description = db.TextProperty(default='This is a GAE app.')
-    keywords = db.StringProperty(multiline=False,default='free,share')
+    keywords = db.StringProperty(multiline=False,default='finance,market,economy,commodity')
     googlejquery = db.StringProperty(multiline=False,default='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     head_metas = db.TextProperty(default='')
     analytics = db.TextProperty(default='')
     admin_email = db.StringProperty(multiline=False,default='your_appID_admin@gmail.com')
     timedelta = db.FloatProperty(default=8.0)# hours
-    google_cse_cx = db.StringProperty(default='009677936332633277893:-nyho-cdiwa')
+    google_cse_cx = db.StringProperty(default='')
     display_ngp = db.BooleanProperty(default=True)
     
     def __unicode__(self):
