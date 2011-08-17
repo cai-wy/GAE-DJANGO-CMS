@@ -242,14 +242,6 @@ overflow: hidden;
 #contentinfo p a {color:#484848;font-weight:normal;text-decoration:underline;}
 #contentinfo p a:hover {color:#d80000;font-weight:bold;text-decoration:underline;}
 
-#bbscontent {background-color:#FEFDF0;padding:0px 10px 10px 10px;margin-bottom:0px;border-bottom:1px solid #CDCAA3;line-height:160%;}
-#bbscontent a {text-decoration:none;color:#7E0202;}
-#bbscontent a:hover {text-decoration:underline;color:#d80000;}
-#bbscontent ul {margin-left:20px;}
-#bbscontent ul li {margin-bottom:6px;}
-#bbscontent .author {background-color:#f2f0dc;float:left;margin:0px;font-weight:bold;padding:0px 10px 0px 10px;line-height:160%;width:80px;}
-#bbscontent .artcon {float:left;margin:0px 0px 0px 10px;padding:0px;width:81%;}
-
 #con_articlelist ul li {list-style:none;margin-bottom:8px;padding:18px 18px 8px 0px;background:url(/media/images/articletopbg.gif) 0 0 no-repeat #FEFDF0;padding-left:24px;border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
 #con_articlelist h3 {BACKGROUND: url(/media/images/arrow.gif) no-repeat left center;padding:2px 2px 2px 14px ;
 width: 94%;
@@ -286,20 +278,6 @@ div.pagination a {padding: 2px 5px 2px 5px;margin-right: 2px;border: 1px solid #
 div.pagination a:hover, div.pagination a:active {border:1px solid #ddd;color: #fff;background-color: #d80000;}
 div.pagination span.current {padding: 2px 5px 2px 5px;margin-right: 2px;border: 1px solid #ddd;font-weight: bold;background-color: #d80000;color: #FFF;}
 div.pagination span.disabled {padding: 2px 5px 2px 5px;margin-right: 2px;border: 1px solid #ddd;color: #ccc;}
-
-.bbsartlist {margin:0px;padding:8px 0px 8px 0px;}
-.bbsartlist h3 {padding:0px;margin:0px 0px 0px 0px;font-size:small;height:20px;}
-.bbsartlist h3 .title2 {padding:4px 0px 4px 0px;float:left;display:block;
-width: 50%;
-white-space:nowrap;
-text-overflow:ellipsis;
--o-text-overflow:ellipsis;
-overflow: hidden;
-}
-.bbsartlist h3 {vertical-align:middle;}
-.bbsartlist em {float:right;padding:2px;margin-right:2px;color:#999;display:inline;font-size:smaller;}
-.bbsartlist li {list-style:none;BACKGROUND: url(/media/images/arrow.gif) no-repeat left center;padding:4px 4px 4px 12px;margin:0px 4px 0px 4px;border-bottom:1px dotted #CDCAA3;}
-.bbsartlist li:hover {background-color:#f2f0dc;}
 
 .articlelist_ad {text-align:center;}
 

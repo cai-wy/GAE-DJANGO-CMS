@@ -11,7 +11,17 @@
 <div class="yui-b">
 <div class="yui-g" id="articlelist_top">
     <h2 title="{{obj|safe}}">{{obj|safe}}</h2>
-    {%if ads_articlelist_top%}<div class="articlelist_ad">{{ads_articlelist_top|safe}}</div>{%endif%}
+    <div class="articlelist_ad">
+    <script type="text/javascript"><!--
+	google_ad_client = "ca-pub-5012078247778040";
+	/* 列表页顶部横幅 */
+	google_ad_slot = "5318556895";
+	google_ad_width = 728;
+	google_ad_height = 90;
+	//-->
+	</script>
+	<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+	</div>
 </div>
 
 <div class="yui-g">
@@ -19,6 +29,21 @@
 <div id="con_articlelist">
 <ul>
 {%for each in cur_articlelist%}{%if each%}
+{% if forloop.last %}
+<div class="articlelist_ad1">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5012078247778040";
+/* 列表底部链接单元 */
+google_ad_slot = "5999248273";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+{% endif %}
 <li>
 <h3><a href="{{each.get_absolute_url}}" title="{{each.title|safe}}">{{each.title|safe}}</a></h3>
 <p>{% trans "Category:" %} <a href="{{each.category.get_absolute_url}}" title="{{each.category.name}}">{{each.category.name|safe}}</a>&nbsp&nbsp{%if each.tags%}{% trans " Tags" %}: {%for tag in each.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a> {% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}&nbsp&nbsp{% trans " Author: " %}<a href="{{each.profile.get_absolute_url}}" title="{{each.profile.displayname|safe}} {% trans 'Profile' %}">{{each.profile.displayname|safe}}</a>&nbsp&nbsp{% trans " Date" %}: {{each.pub_time|date:"d/m/Y"}}</p>
@@ -26,18 +51,40 @@
 <p class="more"><a href="{{each.get_absolute_url}}" rel="nofollow">{% trans "read more..." %}</a></p>
 </li>{%endif%}
 {% if forloop.first %}
-{%if ads_articlelist_linkad1%}<div class="articlelist_ad1">{{ads_articlelist_linkad1|safe}}</div>{%endif%}
+<div class="articlelist_ad1">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5012078247778040";
+/* 列表顶部链接单元 */
+google_ad_slot = "4469162233";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
 {% endif %}
-{% if forloop.last %}
-{%if ads_articlelist_linkad2%}<div class="articlelist_ad1">{{ads_articlelist_linkad2|safe}}</div>{%endif%}
-{% endif %}
+
 {%endfor%}
 </ul>
 {%if pagination_div%}{{ pagination_div|safe }}{%endif%}
 </div>
 
 </div>
-{%if ads_articlelist_bottom%}<div class="articlelist_ad">{{ads_articlelist_bottom|safe}}</div>{%endif%}
+<div class="articlelist_ad">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5012078247778040";
+/* 列表底部横幅 */
+google_ad_slot = "6909027565";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
 </div>
 
 {% endblock %}
