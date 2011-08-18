@@ -58,14 +58,6 @@
 </div>
 {%endif%}
 
-<div class="sidebar_block">
-<h2>{% trans "Categories" %}</h2>
-<ul class="sidebar_list">
-{%for each in all_categories%}
-<li><a href="{{each.get_absolute_url}}" title="{{each.name|safe}}">{{each.name|safe}}</a></li>{%endfor%}
-</ul>
-</div>
-
 {%if newcomment_list%}
 <div class="sidebar_block">
 <h2>{% trans "Recent Comments" %}</h2>
