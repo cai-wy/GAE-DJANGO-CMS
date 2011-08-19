@@ -54,7 +54,9 @@
 {%if g_blog.display_ngp%}
 <div class="sidebar_block">
 <h2>{% trans "Finance Market" %}</h2>
-<script src="http://widgets.macroaxis.com/widgets/url.jsp?t=26&s=FTSE,000001.SS,HSI,N225,NYA,IXIC,GSPC"></script>
+<script language="JavaScript">
+document.write('<script src="http://widgets.macroaxis.com/widgets/url.jsp?t=26&s=FTSE,000001.SS,HSI,N225,NYA,IXIC,GSPC"></scr'+'ipt>');
+</script>
 </div>
 {%endif%}
 
@@ -82,10 +84,9 @@
 	</form>
 	<div id="queries"></div>
 </div>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
-<script type="text/javascript" src="http://www.google.com/cse/t13n?form=cse-search-box&t13n_langs=en"></script>
-<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+<script language="JavaScript">
+document.write('<script type="text/javascript" src="http://www.google.com/jsapi"></scr'+'ipt>' + '<script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</scr'+'ipt>'+'<script type="text/javascript" src="http://www.google.com/cse/t13n?form=cse-search-box&t13n_langs=en"></scr'+'ipt>'+'<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></scr'+'ipt>');
+</script>
 {% endblock %}
 
 {% block analytics %}
