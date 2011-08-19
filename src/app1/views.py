@@ -128,7 +128,7 @@ def get_links():
     men_key = "links_key"
     objs = memcache.get(men_key)
     if objs is None:
-        objs = Links.all().order('-sort').fetch(30)
+        objs = Links.all().order('-sort').fetch(20)
         memcache.add(men_key, objs, 71200)
     base_values['links_list'] = objs
     return objs
