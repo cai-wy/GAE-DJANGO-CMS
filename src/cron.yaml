@@ -1,1 +1,4 @@
 cron:
+- description: Hourly Fetch
+  url: /fetch
+  schedule: every 10 minutes

@@ -64,3 +64,8 @@ class LinksForm(forms.ModelForm):
     class Meta:
         model = Links
 
+def main():
+  run_wsgi_app(application)
+
+if __name__ == "__main__":
+  main()

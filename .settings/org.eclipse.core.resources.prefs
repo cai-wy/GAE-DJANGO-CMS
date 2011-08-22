@@ -1,4 +1,4 @@
-#Fri Aug 12 14:07:04 CST 2011
+#Mon Aug 22 12:29:11 CST 2011
 eclipse.preferences.version=1
 encoding//src/app1/forms.py=utf-8
 encoding//src/app1/models.py=utf-8
@@ -7,6 +7,9 @@ encoding//src/app1/urlsauto.py=utf-8
 encoding//src/app1/views.py=utf-8
 encoding//src/common/appenginepatch/appenginepatcher/patch.py=utf-8
 encoding//src/common/appenginepatch/main.py=utf-8
+encoding//src/common/appenginepatch/ragendja/settings_post.py=utf-8
+encoding//src/common/appenginepatch/ragendja/settings_pre.py=utf-8
+encoding//src/common/appenginepatch/ragendja/template.py=utf-8
 encoding//src/settings.py=utf-8
 encoding//src/urls.py=utf-8
 encoding/src=UTF-8

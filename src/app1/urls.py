@@ -17,7 +17,14 @@ urlpatterns = patterns('app1.views',
     (r'^last_comments$', 'lastcomments'),
     (r'^del_comment/(?P<key>.+)$', 'del_comment'),
     (r'^emptymem$', 'emptymem'),
+    (r'^fetch$', 'fetch'),
     #(r'^profile$', 'profile'),
     #(r'^profile/(?P<key>.+)$', 'show_profile'),
     (r'^my_articles$', 'myarticles'),
 )
+
+def main():
+  run_wsgi_app(application)
+
+if __name__ == "__main__":
+  main()

@@ -2,6 +2,12 @@
 import datetime
 import random
 from django.core.urlresolvers import reverse
+from google.appengine.api import urlfetch
+from app1.feedparser import *
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
+from app1.html2text import html2text
+from google.appengine.dist import use_library
 from django.contrib.auth.models import User
 from google.appengine.api import users
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -12,6 +18,7 @@ from ragendja.dbutils import get_object_or_404
 from ragendja.template import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site, RequestSite
+
 from django.utils.translation import ugettext_lazy as _, ugettext as __
 
 from google.appengine.api import memcache
@@ -782,4 +789,69 @@ def rsslatest(request):
     memcache.add("%s_rsslatest_men_%s"%(cur_app,current_site.domain), xmlbody, 3600*3)#3h
     
     return HttpResponse(xmlbody,content_type='application/rss+xml')
+
+def fetch(request):
+    try:
+        query = Feed.all().order('crawl_time')#db.GqlQuery("SELECT * FROM Feed ORDER BY crawl_time")
+        feeds = query.fetch(1)
+        if len(feeds) == 0:
+            return HttpResponse(content='No Feeds!',content_type='text/plain')
+        else:
+            feed = feeds[0]
+            result = urlfetch.fetch(feed.url)
+            last_guid = feed.last_guid
+            
+            if result.status_code == 200:
+                data = parse(result.content)
+                i = 0
+                if len(data.entries) > 0:
+                    if data.entries[0].guid is None:
+                        feed.crawl_time = datetime.datetime.now()
+                        feed.put()
+                        return HttpResponse(content="No GUID Error",content_type='text/plain')
+                    last_guid = data.entries[0].guid
+    
+                    for entry in data.entries:
+                        if entry.guid == feed.last_guid:
+                            break
+        
+                        i = i + 1
+                  
+                        feed_content = ""
+                  
+                        if 'content' in entry:
+                            for c in entry.content:
+                                feed_content = feed_content + c.value + "\n"
+                        elif 'summary' in entry:
+                            feed_content = entry.summary
+                  
+                        doc = Document(feed = feed.name, guid = entry.guid, author = entry.author_detail.name, title = entry.title, content = feed_content, status = 1, category = feed.category)
+                        doc.put()
+                
+                feed.crawl_time = datetime.datetime.now()
+                if i > 0:
+                    feed.last_guid = last_guid
+                    # feed.feed_update_time = data.updated_parsed
+                
+                    feed.put()
+                    return HttpResponse(content='%d Entries fetched.' % i,content_type='text/plain')
+                    #self.response.out.write("%d entries fetched from %s" % (i, feed.url))
+                else:
+                    feed.put()
+                    return HttpResponse(content='Fetch completed, %d new entries.'% i,content_type='text/plain')
+                    #self.response.out.write("Fetch completed, no entries fetched from %s" % feed.url)
+            else:
+              return HttpResponse(content='Error fetching feed %s...' %feed.url,content_type='text/plain')
+              #self.response.out.write("Error fetching feed %s" % feed.url)
+    except Exception, e:
+        return HttpResponse(content="Error fetching feed, exception: \n %s" % e,content_type='text/plain')
+        #self.response.out.write("Error fetching feed, exception: \n %s" % e)
+
+
+
+def main():
+  run_wsgi_app(application)
+
+if __name__ == "__main__":
+  main()
     

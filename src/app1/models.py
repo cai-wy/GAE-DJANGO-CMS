@@ -328,12 +328,41 @@ class Links(db.Model):
     
     def __unicode__(self):
         return self.name
+
+class Document(db.Model):
+    guid = db.StringProperty()
+    author = db.StringProperty()
+    title = db.StringProperty()
+    content = db.TextProperty()
+    status = db.IntegerProperty()
+    feed = db.StringProperty()
+    category = db.ReferenceProperty(Category, collection_name='cat_docs')
+    def __unicode__(self):
+        return self.title    
+
+    
+class Feed(db.Model):
+    name = db.StringProperty()
+    url = db.StringProperty()
+    feed_update_time = db.DateTimeProperty()
+    crawl_time = db.DateTimeProperty(auto_now_add = 1)
+    last_guid = db.StringProperty(default='')
+    category = db.ReferenceProperty(Category, collection_name='cat_feeds')
+    def __unicode__(self):
+        return self.name    
+
     
 ############
 g_blog = None
 def gblog_init():
     global g_blog
     g_blog = Baseset.get_or_insert(u'default')
-    gdcms = Links.get_or_insert(u'default',sort = 100, name = "GD-cms", url = "http://gae-django-cms.appspot.com")
+#    gdcms = Links.get_or_insert(u'default',sort = 100, name = "GD-cms", url = "http://gae-django-cms.appspot.com")
 
 gblog_init()
+
+def main():
+  run_wsgi_app(application)
+
+if __name__ == "__main__":
+  main()
