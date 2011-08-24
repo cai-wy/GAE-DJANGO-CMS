@@ -37,7 +37,7 @@ class FeedAdmin(admin.ModelAdmin):
     pass
 
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('title','author','status','feed',)
+    list_display = ('title','author','status','feed','link')
     list_filter = ('status',)
     search_fields = ('author','title','content',)
     pass

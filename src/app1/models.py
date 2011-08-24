@@ -169,6 +169,8 @@ class Entry(BaseModel):
     prev_key = db.TextProperty()
     next_key = db.TextProperty()    
     pub_time = db.DateTimeProperty()
+    original_author = db.StringProperty(required=False)
+    original_link = db.StringProperty(required=False)
     
     def __unicode__(self):
         return self.title    
@@ -331,12 +333,13 @@ class Links(db.Model):
 
 class Document(db.Model):
     guid = db.StringProperty()
-    author = db.StringProperty()
+    author = db.StringProperty(required=False)
     title = db.StringProperty()
-    content = db.TextProperty()
+    content = db.TextProperty(required=False)
     status = db.IntegerProperty()
     feed = db.StringProperty()
     category = db.ReferenceProperty(Category, collection_name='cat_docs')
+    link = db.StringProperty(required=False)
     def __unicode__(self):
         return self.title    
 

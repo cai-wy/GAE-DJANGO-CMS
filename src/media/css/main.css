@@ -320,7 +320,7 @@ overflow: hidden;
 .date {margin:0px 0px 8px 0px;padding:0px 0px 2px 0px;color:#999;background-color:#f2f0dc;}
 .signtext {margin:0px;padding:0px;border-top:1px dotted #CDCAA3;color:#999;}
 .messagecon {min-height:52px;}
-.permalink {background-color:#f2f0dc;}
+.permalink {background-color:#f2f0dc;font-weight: normal;}
 
 #slideshowborder{position:relative;height:290px;width:346px; margin:0 auto 10px; border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
 #slideshow{position:relative;height:280px;width:336px;border:5px solid #FFF;margin:0 auto 10px;}

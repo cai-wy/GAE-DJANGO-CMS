@@ -1,0 +1,4 @@
+<div id="slideshow">             
+	<div class="current"> <a href="http://yyheson.com/"><img src="/media/images/1.jpg" alt=""  width="336" height="280"/></a> <span>第一张</span> </div>             
+	<div> <a href="http://yyheson.com/"><img src="/media/images/2.jpg" alt=""  width="336" height="280" /></a> <span>第二张</span> </div>             
+</div>   

@@ -824,8 +824,12 @@ def fetch(request):
                                 feed_content = feed_content + c.value + "\n"
                         elif 'summary' in entry:
                             feed_content = entry.summary
-                  
-                        doc = Document(feed = feed.name, guid = entry.guid, author = entry.author_detail.name, title = entry.title, content = feed_content, status = 1, category = feed.category)
+                        
+                        doclink = ""
+                        if 'link' in entry:
+                            doclink = entry.link
+    
+                        doc = Document(feed = feed.name, guid = entry.guid, author = entry.author_detail.name, title = entry.title, content = feed_content, status = 1, category = feed.category,link = doclink)
                         doc.put()
                 
                 feed.crawl_time = datetime.datetime.now()
