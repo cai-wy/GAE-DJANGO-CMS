@@ -42,7 +42,7 @@ google_ad_height = 15;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 </div>
-<p class="permalink">{% trans "Permalink" %} http://{{current_site.domain}}{{obj.short_url}}</p>
+<div class="clear"></div>
 <div id="contentinfo">
 <p>{%if obj.tags%}{% trans " Tags" %}: {%for tag in obj.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a>{% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}</p>
 <p>{% trans "Category:" %} <a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a>&nbsp&nbsp
