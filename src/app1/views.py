@@ -792,8 +792,7 @@ def rsslatest(request):
 
 def fetch(request):
     try:
-        query = Feed.all().order('crawl_time')#db.GqlQuery("SELECT * FROM Feed ORDER BY crawl_time")
-        feeds = query.fetch(1)
+        feeds = Feed.all().order('crawl_time').fetch(1)#db.GqlQuery("SELECT * FROM Feed ORDER BY crawl_time")
         if len(feeds) == 0:
             return HttpResponse(content='No Feeds!',content_type='text/plain')
         else:
@@ -851,6 +850,63 @@ def fetch(request):
         return HttpResponse(content="Error fetching feed, exception: \n %s" % e,content_type='text/plain')
         #self.response.out.write("Error fetching feed, exception: \n %s" % e)
 
+@login_required
+def document_2_article(request):
+    tags = ''
+    obj = None
+    documentlist = Document.all().filter('status', 1).fetch(20)
+    for eachdocument in documentlist:
+        title = eachdocument.title
+        arttitle_exist = Entry.all().filter('title =', title).get()
+        if arttitle_exist:
+            continue
+        taglist = settag(eachdocument.tags)
+        abstract = del_html(eachdocument.content)[:200] + " ..."
+        post_now = now()
+        obj = Entry(author = request.user,
+                title = title,
+                abstract = abstract,
+                content = eachdocument.content.replace("<p>&nbsp;</p>",""),
+                slug = title.replace(" ","_"),
+                commentclosed = True,
+                tags = taglist,
+                pub_time = post_now,
+                category = eachdocument.category,
+                original_author = eachdocument.author,
+                original_link = eachdocument.link
+                )
+        obj.put()
+        if obj.is_saved():
+            #Category
+            cat = obj.category
+            if obj.key() not in cat.post_keys:
+                cat.post_keys.insert(0,obj.key())
+                if cat.entrycount >= 999:
+                    cat.post_keys = cat.post_keys[:999]
+                cat.entrycount = len(cat.post_keys)
+                cat.put()
+            #tags
+            if obj.tags:
+                for tag in obj.tags:
+                    tag_obj = Tag.get_or_insert(u"key_%s"%tag,tag = tag, entrycount = 1, post_keys = [obj.key()])
+                    if obj.key() not in tag_obj.post_keys:
+                        tag_obj.post_keys.insert(0,obj.key())
+                        if tag_obj.entrycount >= 999:
+                            tag_obj.post_keys = tag_obj.post_keys[:999]
+                        tag_obj.entrycount = len(tag_obj.post_keys)
+                        tag_obj.put()
+            #removecache
+            memcache.delete("%s_rsslatest_men_%s"%(cur_app,get_current_site(request).domain))
+            memcache.delete("newposts_key")
+            memcache.delete("category_posts_%d"%(obj.category.key().id()))
+            if obj.category.entrycount >=10:
+                allpage = (obj.category.entrycount+1)/10 + 1
+                for p in range(1,allpage+1):
+                    memcache.delete("category_posts_%d_page_%d"%(obj.category.key().id(),p))                
+            for tag in obj.tags:
+                memcache.delete(u"tag_posts_key_%s"%(tag))
+        eachdocument.delete()                        
+    return HttpResponse(content="%d Entry converted!" %len(documentlist),content_type='text/plain')
 
 
 def main():

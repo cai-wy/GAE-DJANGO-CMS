@@ -340,6 +340,8 @@ class Document(db.Model):
     feed = db.StringProperty()
     category = db.ReferenceProperty(Category, collection_name='cat_docs')
     link = db.StringProperty(required=False)
+    tags = db.StringListProperty()
+
     def __unicode__(self):
         return self.title    
 

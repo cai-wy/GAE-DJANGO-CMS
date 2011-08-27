@@ -185,7 +185,7 @@ a:hover {color:#000;text-decoration:underline;}
 #bd #yui-main {margin-top:0px;}
 
 #detail_ad1 {text-align:center;margin-top:10px; margin-bottom:10px; clear:left; float:left}
-#detail_ad2 {text-align:center;}
+#detail_ad2 {text-align:center;margin-top:10px;}
 
 .yui-g {margin-bottom:0px;}
 .cate {margin-bottom:10px;background:url(/media/images/bodybottombg.gif) 0 0 no-repeat #FEFDF0;

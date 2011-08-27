@@ -1,4 +1,8 @@
 cron:
-- description: Hourly Fetch
+- description: Fetch one feed per minute
   url: /fetch
+  schedule: every 1 minutes
+
+- description: convert document to article
+  url: /document_2_article
   schedule: every 1 minutes
