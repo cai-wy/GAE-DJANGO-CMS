@@ -22,6 +22,8 @@ urlpatterns = patterns('app1.views',
     #(r'^profile/(?P<key>.+)$', 'show_profile'),
     (r'^my_articles$', 'myarticles'),
     (r'^document_2_article$', 'document_2_article'),
+    (r'^subscribe_tags$', 'subscribe_tags'),
+    (r'^match_tags$', 'match_tags'),
 )
 
 def main():

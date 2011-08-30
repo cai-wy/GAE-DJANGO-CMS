@@ -83,18 +83,9 @@ class Tag(db.Model):#key_tag
             memcache.add(men_key, men_data, 3600)
         return men_data
     
-#    @permalink
-#    def get_absolute_url(self):
-#        if self.slug:
-#            title = self.slug.replace(' ','_')
-#        else:
-#            title = self.name.strip()
-#            title = title.replace(' ','_')
-#            title = title.replace(',','_')
-#            title = title.replace(u'，','_')
-#            title = title.replace("/","%2f")
-#            title = title.replace("%","%25")
-#        return ('app1.views.tag_article', (), {'tag':self.tag})    
+    @permalink
+    def get_absolute_url(self):
+        return ('app1.views.tag_article', (), {'tag':self.tag})    
 
 class Profile(db.Model):#key_email
     author = db.ReferenceProperty(User, collection_name='user_profile')
@@ -341,7 +332,9 @@ class Document(db.Model):
     category = db.ReferenceProperty(Category, collection_name='cat_docs')
     link = db.StringProperty(required=False)
     tags = db.StringListProperty()
-
+    created_time = db.DateTimeProperty(auto_now_add = 1)
+    updated_time = db.DateTimeProperty(auto_now = 1)
+    retries = db.IntegerProperty()
     def __unicode__(self):
         return self.title    
 

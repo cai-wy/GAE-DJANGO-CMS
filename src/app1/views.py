@@ -18,11 +18,12 @@ from ragendja.dbutils import get_object_or_404
 from ragendja.template import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site, RequestSite
-
+from google.appengine.api.prospective_search import *
 from django.utils.translation import ugettext_lazy as _, ugettext as __
 
 from google.appengine.api import memcache
 import re
+import logging
 
 cur_app = "app1"
 
@@ -828,7 +829,8 @@ def fetch(request):
                         if 'link' in entry:
                             doclink = entry.link
     
-                        doc = Document(feed = feed.name, guid = entry.guid, author = entry.author_detail.name, title = entry.title, content = feed_content, status = 1, category = feed.category,link = doclink)
+                        doc = Document(feed = feed.name, guid = entry.guid, author = entry.author_detail.name, title = entry.title, content = feed_content, status = 1, category = feed.category,link = doclink, retries = 0)
+
                         doc.put()
                 
                 feed.crawl_time = datetime.datetime.now()
@@ -907,6 +909,42 @@ def document_2_article(request):
                 memcache.delete(u"tag_posts_key_%s"%(tag))
         eachdocument.delete()                        
     return HttpResponse(content="%d Entry converted!" %len(documentlist),content_type='text/plain')
+
+def subscribe_tags(request):
+    try:
+        query = Tag.all().order('-entrycount').fetch(1000)
+        subs = list_subscriptions(Document) # Get all subscriptions for Documents
+        taglist = []
+        
+        for eachtag in query:
+            taglist.append(eachtag.tag)
+#            logging.info("add tag %s" %eachtag.tag)
+        for sub in subs:
+            unsubscribe(Document, sub[1])
+#            logging.info("remove subscribe %s" %sub[1])
+        
+        for tag in taglist:
+            subscribe(Document, tag, tag)
+#            logging.info("add subscribe %s" %tag)
+            
+        return HttpResponse(content="%d tags subscribed!" %len(taglist),content_type='text/plain')  
+    except Exception, e:
+        err = "Failed to update subscription, exception\n%s" % e
+        logging.error(err)
+        return HttpResponse(content="No Tag Subscribed! Error : %s" %err,content_type='text/plain')
+
+def match_tags(request):
+    try:
+        query = Document.all().filter('status',1).fetch(1)
+        doc = query[0]
+        match(doc)
+        doc.status=2
+        doc.put()
+        return HttpResponse(content="%s matched!" %doc.title,content_type='text/plain')
+    except Exception, e:
+        err = "Unable to match %s, Exception: %s" %(doc.title, e)
+        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
+      
 
 
 def main():

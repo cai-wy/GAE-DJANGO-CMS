@@ -255,7 +255,7 @@ overflow: hidden;
 #con_articlelist p a:hover {color:#d80000;font-weight:bold;text-decoration:underline;}
 #con_articlelist p.abstract {font-weight:normal}
 #con_articlelist p.more {text-align:right;margin:0px 15px 0px 0px;}
-#con_articlelist p.more a{color:#d80000;font-weight:bold; text-decoration:none;}
+#con_articlelist p.more a{color:#d80000;font-weight:normal; text-decoration:none;}
 #con_articlelist p.more a:hover{color:#7E0202; text-decoration:none;}
 
 #postcomment {margin:0px;}
