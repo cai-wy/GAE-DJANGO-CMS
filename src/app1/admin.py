@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app1.models import Baseset,Category,Ads,Links,Tag,Entry,Feed,Document
+from app1.models import Baseset,Category,Ads,Links,Tag,Entry,Feed,Document,Keyword
 
 class BasesetAdmin(admin.ModelAdmin):
     list_display = ('title',)
@@ -20,6 +20,10 @@ class LinksAdmin(admin.ModelAdmin):
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('tag','entrycount')
+    pass
+
+class KeywordAdmin(admin.ModelAdmin):
+    list_display = ('tag',)
     pass
 
 class EntryAdmin(admin.ModelAdmin):
@@ -51,7 +55,7 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(Entry, EntryAdmin)
 admin.site.register(Feed, FeedAdmin)
 admin.site.register(Document, DocumentAdmin)
-
+admin.site.register(Keyword, KeywordAdmin)
 
 def main():
   run_wsgi_app(application)

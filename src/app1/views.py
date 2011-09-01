@@ -793,7 +793,7 @@ def rsslatest(request):
 
 def subscribe_tags(request):
     try:
-        query = Tag.all().order('-entrycount').fetch(1000)
+        query = Keyword.all().fetch(1000)
         subs = list_subscriptions(Document) # Get all subscriptions for Documents
         taglist = []
         
@@ -918,7 +918,8 @@ def document_2_article(request):
         arttitle_exist = Entry.all().filter('title =', title).get()
         if arttitle_exist:
             continue
-        taglist = settag(eachdocument.tags)
+        
+        taglist = eachdocument.tags
         abstract = del_html(eachdocument.content)[:200] + " ..."
         post_now = now()
         obj = Entry(author = request.user,

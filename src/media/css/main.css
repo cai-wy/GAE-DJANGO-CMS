@@ -222,7 +222,7 @@ color:#484848
 #articletop {background:url(/media/images/articletopbg.gif) 0 0 no-repeat #FEFDF0;border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;margin-bottom:10px;padding-bottom:0px;color:#484848;}
 
 
-#content {background-color:#f2f0dc;padding:0px 10px 10px 15px;margin:1px 3px 5px 5px;border-bottom:1px solid #CDCAA3;line-height:160%;}
+#content {background-color:#f2f0dc;padding:0px 10px 10px 15px;margin:5px 3px 5px 5px;border-bottom:1px solid #CDCAA3;line-height:160%;font-size:medium;}
 #content a {text-decoration:underline;color:#d80000;}
 #content a:hover {text-decoration:underline;color:#d80000;}
 #content ul {margin-left:10px;}

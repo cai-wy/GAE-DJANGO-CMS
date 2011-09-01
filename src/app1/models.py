@@ -65,6 +65,13 @@ class Category(db.Model):
 
 signals.pre_delete.connect(cleanup_relations, sender=Category)
 
+class Keyword(db.Model):#key_tag
+    tag = db.StringProperty(multiline=False)
+    
+    def __unicode__(self):
+        return self.tag
+    
+    
 class Tag(db.Model):#key_tag
     tag = db.StringProperty(multiline=False)
     entrycount = db.IntegerProperty(default=0)
