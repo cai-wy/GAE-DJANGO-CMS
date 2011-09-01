@@ -783,8 +783,13 @@ def rsslatest(request):
     for art in get_newposts():
         art_time = art.pub_time.strftime('%a, %d %b %Y %H:%M:%S GMT')
         art_url = "%s%s"%(baseurl,art.get_absolute_url())
-        tmp_str = u'<item> \n<title> %s </title> \n<link>%s</link> \n<guid>%s</guid> \n<description><![CDATA[%s [...<a href="%s" target="_blank">More</a>...]]]></description> \n<category>%s</category> \n<author>%s(%s)</author> \n<pubDate>%s</pubDate>  \n</item> \n'%(art.title, art_url, art_url, art.abstract, art_url, art.category.name, art.author,art.author_name, art_time)
-        xml_list.append(tmp_str)        
+        alltagstring = ""
+        if art.tags:
+            alltagstring = "Tags: "
+            for eachtag in art.tags:
+                alltagstring = alltagstring + '%s, ' %eachtag
+        tmp_str = u'<item> \n<title> %s </title> \n<link>%s</link> \n<guid>%s</guid> \n<description><![CDATA[%s \n %s[...<a href="%s" target="_blank">More</a>...]]]></description> \n<category>%s</category> \n<author>%s(%s)</author> \n<pubDate>%s</pubDate>  \n</item> \n'%(art.title, art_url, art_url, art.content, alltagstring, art_url, art.category.name, art.author,art.author_name, art_time)
+        xml_list.append(tmp_str)
     xml_list.append(u'</channel>\n</rss>\n')
     xmlbody = ''.join(xml_list)
     memcache.add("%s_rsslatest_men_%s"%(cur_app,current_site.domain), xmlbody, 3600*3)#3h
@@ -912,7 +917,7 @@ def match_tags(request):
 def document_2_article(request):
     tags = ''
     obj = None
-    documentlist = Document.all().filter('status', 4).fetch(100)
+    documentlist = Document.all().filter('status', 3).fetch(100)
     for eachdocument in documentlist:
         title = eachdocument.title
         arttitle_exist = Entry.all().filter('title =', title).get()
