@@ -1,16 +1,16 @@
 cron:
 - description: Fetch one feed per minute
   url: /fetch
-  schedule: every 1 minutes
+  schedule: every 3 minutes
 
 - description: Update Prospective Search Subscriptions
   url: /subscribe_tags
-  schedule: every 10 minutes
+  schedule: every 2 hours
 
 - description: Prospective Search on One Document
-  url: /match
-  schedule: every 1 minutes
+  url: /match_tags
+  schedule: every 10 minutes
   
 - description: convert document to article
   url: /document_2_article
-  schedule: every 1 minutes
+  schedule: every 1 hours

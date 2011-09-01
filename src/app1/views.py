@@ -791,6 +791,29 @@ def rsslatest(request):
     
     return HttpResponse(xmlbody,content_type='application/rss+xml')
 
+def subscribe_tags(request):
+    try:
+        query = Tag.all().order('-entrycount').fetch(1000)
+        subs = list_subscriptions(Document) # Get all subscriptions for Documents
+        taglist = []
+        
+        for eachtag in query:
+            taglist.append(eachtag.tag)
+#            logging.info("add tag %s" %eachtag.tag)
+        for sub in subs:
+            unsubscribe(Document, sub[1])
+#            logging.info("remove subscribe %s" %sub[1])
+        
+        for tag in taglist:
+            subscribe(Document, tag, tag)
+#            logging.info("add subscribe %s" %tag)
+            
+        return HttpResponse(content="%d tags subscribed!" %len(taglist),content_type='text/plain')  
+    except Exception, e:
+        err = "Failed to update subscription, exception\n%s" % e
+        logging.error(err)
+        return HttpResponse(content="No Tag Subscribed! Error : %s" %err,content_type='text/plain')
+
 def fetch(request):
     try:
         feeds = Feed.all().order('crawl_time').fetch(1)#db.GqlQuery("SELECT * FROM Feed ORDER BY crawl_time")
@@ -852,11 +875,44 @@ def fetch(request):
         return HttpResponse(content="Error fetching feed, exception: \n %s" % e,content_type='text/plain')
         #self.response.out.write("Error fetching feed, exception: \n %s" % e)
 
+
+def match_tags(request):
+    try:
+        query = Document.all().filter('status',1).fetch(10)
+        for doc in query:
+            doc.status=2
+            doc.put()
+            match(document = doc, result_batch_size=1000)
+        return HttpResponse(content="%d matched!" %len(query),content_type='text/plain')
+    except Exception, e:
+        err = "Unable to match %s, Exception: %s" %(doc.title, e)
+        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
+      
+#def record_tags(request):
+#    try:
+#        doc = get_document(request.POST)
+#        logging.info(doc)
+#        document = Document.get(key(doc))
+#
+#        document.status = 3
+#        document.retries = 0
+#        
+#        tags = []
+#        for sub_id in request.POST.get('id'):
+#            tags.append(sub_id)
+#        document.tags = tags
+#        document.put()
+#        return HttpResponse(content="%s 's tags recorded!" %document.title,content_type='text/plain')
+#    except Exception, e:
+#        err = "Unable to process, Exception: %s" %e
+#        logging.info("Unable to process, Exception: %s"%e )
+#        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
+#      
 @login_required
 def document_2_article(request):
     tags = ''
     obj = None
-    documentlist = Document.all().filter('status', 1).fetch(20)
+    documentlist = Document.all().filter('status', 4).fetch(100)
     for eachdocument in documentlist:
         title = eachdocument.title
         arttitle_exist = Entry.all().filter('title =', title).get()
@@ -909,41 +965,6 @@ def document_2_article(request):
                 memcache.delete(u"tag_posts_key_%s"%(tag))
         eachdocument.delete()                        
     return HttpResponse(content="%d Entry converted!" %len(documentlist),content_type='text/plain')
-
-def subscribe_tags(request):
-    try:
-        query = Tag.all().order('-entrycount').fetch(1000)
-        subs = list_subscriptions(Document) # Get all subscriptions for Documents
-        taglist = []
-        
-        for eachtag in query:
-            taglist.append(eachtag.tag)
-#            logging.info("add tag %s" %eachtag.tag)
-        for sub in subs:
-            unsubscribe(Document, sub[1])
-#            logging.info("remove subscribe %s" %sub[1])
-        
-        for tag in taglist:
-            subscribe(Document, tag, tag)
-#            logging.info("add subscribe %s" %tag)
-            
-        return HttpResponse(content="%d tags subscribed!" %len(taglist),content_type='text/plain')  
-    except Exception, e:
-        err = "Failed to update subscription, exception\n%s" % e
-        logging.error(err)
-        return HttpResponse(content="No Tag Subscribed! Error : %s" %err,content_type='text/plain')
-
-def match_tags(request):
-    try:
-        query = Document.all().filter('status',1).fetch(1)
-        doc = query[0]
-        match(doc)
-        doc.status=2
-        doc.put()
-        return HttpResponse(content="%s matched!" %doc.title,content_type='text/plain')
-    except Exception, e:
-        err = "Unable to match %s, Exception: %s" %(doc.title, e)
-        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
       
 
 

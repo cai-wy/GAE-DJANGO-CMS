@@ -38,6 +38,9 @@ handlers:
   static_dir: media
   secure: optional
 
+- url: /_ah/prospective_search
+  script: app1/psearch.py
+
 - url: /.*_.*/.*
   script: common/appenginepatch/main.py
   secure: optional
