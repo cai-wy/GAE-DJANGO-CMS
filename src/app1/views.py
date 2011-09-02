@@ -709,6 +709,7 @@ def show_profile(request,key):
         return generate(request,'show_profile.html',{'obj':obj,'form':form})
     else:
         HttpResponseRedirect("/")
+
 def robots(request):
     current_site = get_current_site(request)
     return render_to_response(request,'robots.txt',{'current_site_domain':current_site.domain})
@@ -736,8 +737,8 @@ def getsitemapxml(request,cate_list):
         ##get cate
         loc = u"http://%s%s" % (current_site.domain,cate.get_absolute_url())
         lastmod = "%s"%(now().strftime('%Y-%m-%dT%X+00:00'))
-        changefreq = 'daily'
-        priority = '0.6'
+        changefreq = 'hourly'
+        priority = '0.7'
         urlstr = "<url>\n<loc>%s</loc>\n<lastmod>%s</lastmod>\n<changefreq>%s</changefreq>\n<priority>%s</priority>\n</url>\n"%(loc,lastmod,changefreq,priority)
         urls.append(urlstr)
         ##get cate art
