@@ -27,9 +27,7 @@
     <div id="headtop">{% if user.is_authenticated %}{% trans "user" %}: <strong>{{ user }}</strong> |  {% if user.is_superuser %}<a href="{% url app1.views.emptymem %}">{% trans "Flush Cache" %}</a> | {%endif%}<a href="{% url django.contrib.auth.views.logout %}">{% trans "Logged out" %}</a> {% else %}<a href="{% url django.contrib.auth.views.login %}">{% trans "Secure login with google account" %}</a>{% endif %}</div>
     <div><h1><a href="/" title="{{ g_blog.title }}">{{ g_blog.title }}</a> <em title="{{ g_blog.subtitle }}">{{ g_blog.subtitle }}</em></h1>
     <h2>
-    <ul class="nav">{% block nav %}
-    <li class="curselect"><a href="{% url app1.views.index %}" title="GAE CMS">GAE CMS</a></li>
-    <li><a href="http://gaebbs.xibu.biz/" title="GAE {% trans 'BBS' %}">GAE {% trans 'BBS' %}</a></li>{% endblock %}
+    <ul class="nav">{% block nav %}{% endblock %}
     </ul>
     </h2>
     </div>
@@ -55,6 +53,19 @@
     </div>
     
 </div>
-{% block analytics %}{% endblock %}
+{% block analytics %}
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25165123-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+{% endblock %}
 </body>
 </html>

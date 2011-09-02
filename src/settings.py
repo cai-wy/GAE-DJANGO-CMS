@@ -11,6 +11,7 @@ MEDIA_VERSION = 1
 #if on_production_server or not have_appserver:
 #    MEDIA_URL = 'http://media.mydomain.com/media/%d/'
 
+DEBUG = False
 
 # Change your email settings
 if on_production_server:

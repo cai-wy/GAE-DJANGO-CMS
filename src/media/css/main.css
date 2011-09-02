@@ -324,7 +324,7 @@ overflow: hidden;
 .permalink {font-weight: normal;}
 
 #slideshowborder{position:relative;height:290px;width:346px; margin:0 auto 10px; border-bottom:1px solid #CDCAA3; border-left:1px solid #CDCAA3; border-right:1px solid #CDCAA3;}
-#slideshow{position:relative;height:280px;width:336px;border:5px solid #FFF;margin:0 auto 10px;}
+#slideshow{position:relative;height:280px;width:336px;border:5px solid #FEFDF0;margin:0 auto 10px;}
 #slideshow div{position:absolute;top:0;left:0;z-index:8;opacity:0.0;width:336px; height:280px;overflow:hidden;background-color:#FFF;}
 #slideshow div.current{z-index:10;}
 #slideshow div.prev{z-index:9;}
