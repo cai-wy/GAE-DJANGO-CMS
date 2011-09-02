@@ -77,7 +77,7 @@ def get_tags():
     """get popular tags"""
     objects = memcache.get(tags_key)
     if objects is None:
-        objects = Tag.all().order('-entrycount').fetch(60)
+        objects = Tag.all().order('-entrycount').fetch(100)
         if len(objects)==0:
             newobj = Tag(tag = "Finance", entrycount = 1).put()
             newobj = Tag(tag = "Guide", entrycount = 1).put()
@@ -140,7 +140,7 @@ def get_links():
         memcache.add(men_key, objs, 71200)
     base_values['links_list'] = objs
     return objs
-get_links()
+#get_links()
 
 def checkup():
     new0 = []
@@ -157,7 +157,7 @@ def checkup():
     new0.extend(new1)
     base_values['links_list'] = new0
 
-checkup()
+#checkup()
 
 ##############
 def generate(request, template_name, template_values={}):
