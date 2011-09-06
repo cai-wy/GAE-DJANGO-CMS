@@ -79,8 +79,8 @@ def get_tags():
     if objects is None:
         objects = Tag.all().order('-entrycount').fetch(100)
         if len(objects)==0:
-            newobj = Tag(tag = "Finance", entrycount = 1).put()
-            newobj = Tag(tag = "Guide", entrycount = 1).put()
+            newobj = Tag(tag = "finance", entrycount = 1).put()
+            newobj = Tag(tag = "guide", entrycount = 1).put()
             objects = Tag.all().order('-entrycount').fetch(2)
         maxcount = objects[0].entrycount
         mincount = objects[len(objects) - 1].entrycount
