@@ -789,7 +789,7 @@ def rsslatest(request):
             alltagstring = "Tags: "
             for eachtag in art.tags:
                 alltagstring = alltagstring + '%s, ' %eachtag
-        tmp_str = u'<item> \n<title> %s </title> \n<link>%s</link> \n<guid>%s</guid> \n<description><![CDATA[%s \n %s[...<a href="%s" target="_blank">More</a>...]]]></description> \n<category>%s</category> \n<author>%s(%s)</author> \n<pubDate>%s</pubDate>  \n</item> \n'%(art.title, art_url, art_url, art.content, alltagstring, art_url, art.category.name, art.author,art.author_name, art_time)
+        tmp_str = u'<item> \n<title> %s </title> \n<link>%s</link> \n<guid>%s</guid> \n<description><![CDATA[\n <a href="%s" target="_blank">%s</a> \n %s \n %s]]></description> \n<category>%s</category> \n<author>%s(%s)</author> \n<pubDate>%s</pubDate>  \n</item> \n'%(art.title, art_url, art_url, art_url, art.title, art.content, alltagstring, art.category.name, art.author,art.author_name, art_time)
         xml_list.append(tmp_str)
     xml_list.append(u'</channel>\n</rss>\n')
     xmlbody = ''.join(xml_list)
