@@ -962,6 +962,7 @@ def document_2_article(request):
     documentlist2 = Document.all().filter('status', 2).fetch(25)
     for eachdocument in documentlist1:
         title = eachdocument.title
+        title = title.replace(u'-',u'_')
         arttitle_exist = Entry.all().filter('title =', title).get()
         if arttitle_exist:
             continue
@@ -1014,6 +1015,7 @@ def document_2_article(request):
         eachdocument.delete()                        
     for eachdocument in documentlist2:
         title = eachdocument.title
+        title = title.replace(u'-',u'_')
         arttitle_exist = Entry.all().filter('title =', title).get()
         if arttitle_exist:
             continue
