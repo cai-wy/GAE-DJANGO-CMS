@@ -781,7 +781,9 @@ def rsslatest(request):
     head_str = u'<title>%s</title> \n<link>%s</link> \n<description>%s Latest Articles</description> \n<language>en-us</language> \n<copyright>Copyright (C) %s. All rights reserved.</copyright> \n<pubDate>%s</pubDate> \n<lastBuildDate>%s</lastBuildDate>\n<generator>%s RSS Generator</generator> \n'%(site_name,baseurl,site_name,current_site.domain,now_time,now_time,current_site.domain)
     xml_list.append(head_str)
     
-    for art in get_newposts():
+    newpostlist = Entry.all().order('-pub_time').fetch(50)
+    
+    for art in newpostlist:
         art_time = art.pub_time.strftime('%a, %d %b %Y %H:%M:%S GMT')
         art_url = "%s%s"%(baseurl,art.get_absolute_url())
         alltagstring = ""
@@ -885,7 +887,7 @@ def fetch(request):
 
 def match_tags(request):
     try:
-        query = Document.all().filter('status',1).fetch(50)
+        query = Document.all().filter('status',1).fetch(10)
         for doc in query:
             doc.status=2
             doc.put()
@@ -895,6 +897,43 @@ def match_tags(request):
         err = "Unable to match %s, Exception: %s" %(doc.title, e)
         return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
       
+def replace_tags(request):
+    try:
+        current_site = get_current_site(request)
+        query = Document.all().filter('status',3).fetch(10)
+        for doc in query:
+            logging.info("tags: %s"%doc.tags)
+            taglist = doc.tags
+            taglist.sort(key=lambda x:-len(x))
+            logging.info("taglist: %s"%taglist)
+            tags = []
+            for tag in taglist:
+                logging.info("keyword: %s"%tag)
+                replace=1
+                # see if replaced
+                for t in tags:
+                    if t.find(tag) != -1:
+                        replace = 0
+                        break
+                if replace == 1:# let's replace the string
+                    idx = 0
+                    while idx < len(doc.content):
+                        idx = doc.content.lower().find(tag.lower(), idx)
+                        if idx == -1: # the end
+                            break
+                        temp = '<a href="%s/tag/%s/">' % (current_site.domain,tag)
+                        doc.content = doc.content[:idx] + temp + doc.content[idx:]
+                        idx = idx + len(tag) + len(temp)
+                        doc.content = doc.content[:idx] + "</a>" + doc.content[idx:]
+                    tags.append(tag)
+            doc.status=4
+            doc.put()
+        return HttpResponse(content="%d replaced!" %len(query),content_type='text/plain')
+    except Exception, e:
+        err = "Unable to replace %s, Exception: %s" %(doc.title, e)
+        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
+      
+
 #def record_tags(request):
 #    try:
 #        doc = get_document(request.POST)
@@ -919,8 +958,8 @@ def match_tags(request):
 def document_2_article(request):
     tags = ''
     obj = None
-    documentlist1 = Document.all().filter('status', 3).fetch(100)
-    documentlist2 = Document.all().filter('status', 2).fetch(100)
+    documentlist1 = Document.all().filter('status', 4).fetch(25)
+    documentlist2 = Document.all().filter('status', 2).fetch(25)
     for eachdocument in documentlist1:
         title = eachdocument.title
         arttitle_exist = Entry.all().filter('title =', title).get()

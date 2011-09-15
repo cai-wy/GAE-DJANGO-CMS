@@ -24,6 +24,7 @@ urlpatterns = patterns('app1.views',
     (r'^document_2_article$', 'document_2_article'),
     (r'^subscribe_tags$', 'subscribe_tags'),
     (r'^match_tags$', 'match_tags'),
+    (r'^replace_tags$', 'replace_tags'),
     #(r'^_ah/prospective_search$', 'record_tags'),
 )
 

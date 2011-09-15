@@ -29,6 +29,10 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 <div id="content">
 {{obj.content|safe}}
 <div class="clear"></div>
+
+<span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'452e8596-ce73-4fb5-9fc9-25f8511f282c'});</script>
+
 <div id="contentinfo">
 <p>{%if obj.tags%}{% trans " Tags" %}: {%for tag in obj.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag|safe}}">{{tag|safe}}</a>{% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}</p>
 <p>{% trans "Category:" %} <a href="{{obj.category.get_absolute_url}}" title="{{obj.category.name|safe}}">{{obj.category.name|safe}}</a>&nbsp&nbsp
