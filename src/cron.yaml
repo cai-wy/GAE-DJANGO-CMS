@@ -1,7 +1,7 @@
 cron:
 - description: Fetch one feed per minute
   url: /fetch
-  schedule: every 15 minutes
+  schedule: every 30 minutes
 
 - description: Update Prospective Search Subscriptions
   url: /subscribe_tags
@@ -9,8 +9,12 @@ cron:
 
 - description: Prospective Search on One Document
   url: /match_tags
-  schedule: every 60 minutes from 00:00 to 23:00
+  schedule: every 30 minutes from 00:10 to 23:10
+  
+- description: Prospective Search on One Document
+  url: /replace_tags
+  schedule: every 30 minutes from 00:20 to 23:20
   
 - description: convert document to article
   url: /document_2_article
-  schedule: every 60 minutes from 00:30 to 23:30
+  schedule: every 30 minutes from 00:30 to 23:30

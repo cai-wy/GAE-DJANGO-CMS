@@ -887,7 +887,7 @@ def fetch(request):
 
 def match_tags(request):
     try:
-        query = Document.all().filter('status',1).fetch(10)
+        query = Document.all().filter('status',1).fetch(20)
         for doc in query:
             doc.status=2
             doc.put()
@@ -900,32 +900,44 @@ def match_tags(request):
 def replace_tags(request):
     try:
         current_site = get_current_site(request)
-        query = Document.all().filter('status',3).fetch(10)
+        query = Document.all().filter('status',3).fetch(20)
         for doc in query:
-            logging.info("tags: %s"%doc.tags)
             taglist = doc.tags
             taglist.sort(key=lambda x:-len(x))
-            logging.info("taglist: %s"%taglist)
             tags = []
             for tag in taglist:
-                logging.info("keyword: %s"%tag)
                 replace=1
-                # see if replaced
-                for t in tags:
-                    if t.find(tag) != -1:
-                        replace = 0
-                        break
+                # see if replaced 
+#                for t in tags:
+#                    if t.find(tag) != -1:
+#                        replace = 0
+#                        break
                 if replace == 1:# let's replace the string
                     idx = 0
+                    replacetimes = 0
                     while idx < len(doc.content):
                         idx = doc.content.lower().find(tag.lower(), idx)
                         if idx == -1: # the end
                             break
-                        temp = '<a href="%s/tag/%s/">' % (current_site.domain,tag)
+                        
+                        # see if already in <a> tag
+                        atag_begin = doc.content.lower().find("<a href", idx)
+                        atag_end = doc.content.lower().find("</a>", idx)
+            
+                        if atag_end != -1 and (atag_begin == -1 or atag_begin > atag_end): # already in <a> tag, ignore
+                            idx = idx + len(tag)
+                            continue
+                        
+                        temp = '<a href="http://%s/tag/%s">' % (current_site.domain,tag)
                         doc.content = doc.content[:idx] + temp + doc.content[idx:]
                         idx = idx + len(tag) + len(temp)
                         doc.content = doc.content[:idx] + "</a>" + doc.content[idx:]
-                    tags.append(tag)
+                        replacetimes += 1
+                        
+                        if replacetimes >= 3:
+                            break
+                    
+#                    tags.append(tag)
             doc.status=4
             doc.put()
         return HttpResponse(content="%d replaced!" %len(query),content_type='text/plain')
@@ -958,11 +970,12 @@ def replace_tags(request):
 def document_2_article(request):
     tags = ''
     obj = None
-    documentlist1 = Document.all().filter('status', 4).fetch(25)
-    documentlist2 = Document.all().filter('status', 2).fetch(25)
+    documentlist1 = Document.all().filter('status', 4).fetch(20)
+    documentlist2 = Document.all().filter('status', 2).fetch(20)
     for eachdocument in documentlist1:
         title = eachdocument.title
         title = title.replace(u'-',u'_')
+        title = title.replace(u'…',u'')
         arttitle_exist = Entry.all().filter('title =', title).get()
         if arttitle_exist:
             continue
@@ -1016,6 +1029,7 @@ def document_2_article(request):
     for eachdocument in documentlist2:
         title = eachdocument.title
         title = title.replace(u'-',u'_')
+        title = title.replace(u'…',u'')
         arttitle_exist = Entry.all().filter('title =', title).get()
         if arttitle_exist:
             continue
