@@ -343,7 +343,7 @@ class Document(db.Model):
     updated_time = db.DateTimeProperty(auto_now = 1)
     retries = db.IntegerProperty()
     def __unicode__(self):
-        return self.title    
+        return self.title
 
     
 class Feed(db.Model):
@@ -356,6 +356,12 @@ class Feed(db.Model):
     def __unicode__(self):
         return self.name    
 
+class DailyRSS(db.Model):
+    title = db.StringProperty()
+    content = db.TextProperty(required=False)
+    updated_time = db.DateTimeProperty(auto_now = 1)
+    def __unicode__(self):
+        return self.title
     
 ############
 g_blog = None

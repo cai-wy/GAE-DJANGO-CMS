@@ -77,7 +77,7 @@ def get_tags():
     """get popular tags"""
     objects = memcache.get(tags_key)
     if objects is None:
-        objects = Tag.all().order('-entrycount').fetch(50)
+        objects = Tag.all().order('-entrycount').fetch(40)
         if len(objects)==0:
             newobj = Tag(tag = "finance", entrycount = 1).put()
             newobj = Tag(tag = "guide", entrycount = 1).put()
@@ -799,6 +799,7 @@ def rsslatest(request):
     
     return HttpResponse(xmlbody,content_type='application/rss+xml')
 
+
 def subscribe_tags(request):
     try:
         query = Keyword.all().fetch(1000)
@@ -1086,6 +1087,62 @@ def documentarticle(request):
         eachdocument.delete()                        
     return HttpResponse(content="%d Entry converted!" %(len(documentlist1)+len(documentlist2)),content_type='text/plain')
       
+def generate_daily(request):
+    try:
+        query = Entry.all().order('-pub_time').fetch(30)
+        doc_list = []
+        for doc in query:
+            docstring = u'<p><a href="%s" target="_blank">%s</a> \n %s \n\n<p>' %(doc.get_absolute_url(),doc.title,doc.abstract)
+            doc_list.append(docstring)
+        doclistxml = "".join(doc_list)
+        doctitle = "Personal Finance Guide Update: " + now().strftime('%d %b %Y %H:%M:%S')
+        obj = DailyRSS(title = doctitle, content = doclistxml)
+        obj.put()
+        logging.info(doclistxml)
+        return HttpResponse(content="generated!",content_type='text/plain')
+    except Exception, e:
+        err = "Unable to generate %s, Exception: %s" %(doc.title, e)
+        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
+    
+
+def rssdaily(request):
+    current_site = get_current_site(request)
+    # get from mem
+    xmlbody = memcache.get("%s_rssdaily_men_%s"%(cur_app,current_site.domain))
+    #sitemap = None
+    if xmlbody:
+        return HttpResponse(xmlbody,content_type='application/rss+xml')
+    
+    baseurl = "http://www.financeguider.info/"
+    site_name = g_blog.title
+    now_time = now().strftime('%a, %d %b %Y %H:%M:%S GMT')
+    subtitle = site_name
+    feedurl = "rssdaily.xml"
+    
+    xml_list = []
+    xml_list.append(u'<?xml version="1.0" encoding="UTF-8"?> \n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n<atom:link href="%s%s" rel="self" type="application/rss+xml" /> \n'%( baseurl, reverse('app1.views.rssdaily')))
+    xml_list.append(u' xmlns:atom="http://www.w3.org/2005/Atom"')
+    head_str = u'<title>%s</title> \n<link>%s</link> \n<description>%s Latest Articles</description> \n<language>en-us</language> \n<copyright>Copyright (C) %s. All rights reserved.</copyright> \n<pubDate>%s</pubDate> \n<lastBuildDate>%s</lastBuildDate>\n<generator>%s RSS Generator</generator> \n'%(site_name,baseurl,site_name,current_site.domain,now_time,now_time,current_site.domain)
+    xml_list.append(head_str)
+    
+    newpostlist = DailyRSS.all().order('-updated_time').fetch(10)
+    #query = db.GqlQuery("SELECT * FROM Entry where pub_time < %s ORDER BY crawl_time" %)
+    
+    for art in newpostlist:
+        art_time = art.updated_time.strftime('%a, %d %b %Y %H:%M:%S GMT')
+#        art_url = "%s%s"%(baseurl,art.get_absolute_url())
+#        alltagstring = ""
+#        if art.tags:
+#            alltagstring = "Tags: "
+#            for eachtag in art.tags:
+#                alltagstring = alltagstring + '%s, ' %eachtag
+        tmp_str = u'<item> \n<title> %s </title> \n<link>%s</link> \n<guid>%s</guid> \n<description><![CDATA[\n %s \n]]></description> \n<pubDate>%s</pubDate>  \n</item> \n'%(art.title, baseurl, art.title, art.content, art_time)
+        xml_list.append(tmp_str)
+    xml_list.append(u'</channel>\n</rss>\n')
+    xmlbody = ''.join(xml_list)
+    memcache.add("%s_rssdaily_men_%s"%(cur_app,current_site.domain), xmlbody, 3600*3)#3h
+    
+    return HttpResponse(xmlbody,content_type='application/rss+xml')
 
 
 def main():

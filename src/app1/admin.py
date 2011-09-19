@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app1.models import Baseset,Category,Ads,Links,Tag,Entry,Feed,Document,Keyword
+from app1.models import Baseset,Category,Ads,Links,Tag,Entry,Feed,Document,Keyword,DailyRSS
 
 class BasesetAdmin(admin.ModelAdmin):
     list_display = ('title',)
@@ -40,6 +40,11 @@ class FeedAdmin(admin.ModelAdmin):
     ordering = ('-crawl_time',)
     pass
 
+class DailyRSSAdmin(admin.ModelAdmin):
+    list_display = ('title','content','updated_time',)
+    ordering = ('-updated_time',)
+    pass
+
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ('title','author','status','feed','link')
     list_filter = ('status',)
@@ -56,6 +61,7 @@ admin.site.register(Entry, EntryAdmin)
 admin.site.register(Feed, FeedAdmin)
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Keyword, KeywordAdmin)
+admin.site.register(DailyRSS, DailyRSSAdmin)
 
 def main():
   run_wsgi_app(application)

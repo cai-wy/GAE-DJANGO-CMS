@@ -18,3 +18,9 @@ cron:
 - description: convert document to article
   url: /documentarticle
   schedule: every 30 minutes from 00:30 to 23:30
+
+- description: generate doclist several time a day
+  url: /generate_daily
+  schedule: every 6 hours
+  
+  
