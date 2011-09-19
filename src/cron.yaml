@@ -16,5 +16,5 @@ cron:
   schedule: every 30 minutes from 00:20 to 23:20
   
 - description: convert document to article
-  url: /document_2_article
+  url: /documentarticle
   schedule: every 30 minutes from 00:30 to 23:30

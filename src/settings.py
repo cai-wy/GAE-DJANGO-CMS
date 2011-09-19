@@ -19,7 +19,7 @@ if on_production_server:
     SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '11111111'
+SECRET_KEY = 'asdf'
 
 #ENABLE_PROFILER = True
 #ONLY_FORCED_PROFILE = True

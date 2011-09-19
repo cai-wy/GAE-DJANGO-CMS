@@ -153,7 +153,7 @@ class BaseModel(db.Model):
         DBModel.__setattr__(self,attrname,value)
 
 class Entry(BaseModel):
-    author = db.ReferenceProperty(User, collection_name='user_posts')
+    author = db.ReferenceProperty(User, collection_name='user_posts', required=False)
     author_profile = db.ReferenceProperty(Profile, collection_name='user_profile_posts')
     category = db.ReferenceProperty(Category, collection_name='cat_posts',required=True)
     title = db.StringProperty(multiline=False,default='')

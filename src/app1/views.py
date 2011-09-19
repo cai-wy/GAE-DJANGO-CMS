@@ -77,7 +77,7 @@ def get_tags():
     """get popular tags"""
     objects = memcache.get(tags_key)
     if objects is None:
-        objects = Tag.all().order('-entrycount').fetch(100)
+        objects = Tag.all().order('-entrycount').fetch(50)
         if len(objects)==0:
             newobj = Tag(tag = "finance", entrycount = 1).put()
             newobj = Tag(tag = "guide", entrycount = 1).put()
@@ -928,7 +928,7 @@ def replace_tags(request):
                             idx = idx + len(tag)
                             continue
                         
-                        temp = '<a href="http://%s/tag/%s">' % (current_site.domain,tag)
+                        temp = '<a href="http://www.financeguider.info/tag/%s">' %tag
                         doc.content = doc.content[:idx] + temp + doc.content[idx:]
                         idx = idx + len(tag) + len(temp)
                         doc.content = doc.content[:idx] + "</a>" + doc.content[idx:]
@@ -966,12 +966,16 @@ def replace_tags(request):
 #        logging.info("Unable to process, Exception: %s"%e )
 #        return HttpResponse(content="Error: %s!" %err,content_type='text/plain')
 #      
-@login_required
-def document_2_article(request):
+
+def documentarticle(request):
     tags = ''
     obj = None
     documentlist1 = Document.all().filter('status', 4).fetch(20)
-    documentlist2 = Document.all().filter('status', 2).fetch(20)
+    documentlist2 = Document.all().filter('status', 2).fetch(5)
+    
+    authorid = Entry.all().get().author
+    logging.info(authorid)
+    
     for eachdocument in documentlist1:
         title = eachdocument.title
         title = title.replace(u'-',u'_')
@@ -983,7 +987,7 @@ def document_2_article(request):
         taglist = eachdocument.tags
         abstract = del_html(eachdocument.content)[:200] + " ..."
         post_now = now()
-        obj = Entry(author = request.user,
+        obj = Entry(author = authorid, #request.user,
                 title = title,
                 abstract = abstract,
                 content = eachdocument.content.replace("<p>&nbsp;</p>",""),
@@ -1037,7 +1041,7 @@ def document_2_article(request):
         taglist = eachdocument.tags
         abstract = del_html(eachdocument.content)[:200] + " ..."
         post_now = now()
-        obj = Entry(author = request.user,
+        obj = Entry(author = authorid, #request.user,
                 title = title,
                 abstract = abstract,
                 content = eachdocument.content.replace("<p>&nbsp;</p>",""),
