@@ -15,11 +15,11 @@ DEBUG = False
 
 # Change your email settings
 if on_production_server:
-    DEFAULT_FROM_EMAIL = 'admin@financeguider.info'
+    DEFAULT_FROM_EMAIL = ''
     SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'asdf'
+SECRET_KEY = '11111111'
 
 #ENABLE_PROFILER = True
 #ONLY_FORCED_PROFILE = True
