@@ -861,9 +861,12 @@ def fetch(request):
                         doclink = ""
                         if 'link' in entry:
                             doclink = entry.link
-    
+                        
+                        
+                        if len(feed_content) < 3000:
+                            continue
+                        
                         doc = Document(feed = feed.name, guid = entry.guid['original-id'], author = entry.author_detail.name, title = entry.title, content = feed_content, status = 1, category = feed.category,link = doclink, retries = 0)
-
                         doc.put()
                 
                 feed.crawl_time = datetime.datetime.now()
