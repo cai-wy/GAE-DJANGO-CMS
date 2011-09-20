@@ -1,3 +1,4 @@
+import os
 import datetime
 import logging
 
@@ -5,6 +6,10 @@ from app1.models import Document,Tag
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.api.prospective_search import *
+from google.appengine.dist import use_library
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+use_library('django', '1.1')
 
 class ProspectiveSearchHandler(webapp.RequestHandler):
   def post(self):

@@ -6,9 +6,10 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext.webapp import template
 from google.appengine.dist import use_library
+from google.appengine.dist import use_library
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-#use_library('django', '1.1')
+use_library('django', '1.1')
 
 class MainPageHandler(webapp.RequestHandler):
   def get(self):
