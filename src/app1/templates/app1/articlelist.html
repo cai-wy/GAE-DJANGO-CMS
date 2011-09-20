@@ -46,8 +46,8 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 {% endif %}
 <li>
 <h3><a href="{{each.get_absolute_url}}" title="{{each.title|safe}}">{{each.title|safe}}</a></h3>
-<p>{% trans "Category:" %} <a href="{{each.category.get_absolute_url}}" title="{{each.category.name}}">{{each.category.name|safe}}</a>&nbsp&nbsp{%if each.tags%}{% trans " Tags" %}: {%for tag in each.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a> {% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}&nbsp&nbsp{%if obj.original_author %}{% trans " Author:" %} {{obj.original_author|safe}}&nbsp&nbsp{%endif%}{% trans " Date" %}: {{each.pub_time|date:"d/m/Y"}}</p>
 <p class="abstract">{{each.abstract|safe}}</p>
+<p>{% trans "Category:" %} <a href="{{each.category.get_absolute_url}}" title="{{each.category.name}}">{{each.category.name|safe}}</a>&nbsp&nbsp{%if each.tags%}{% trans " Tags" %}: {%for tag in each.tags%}<a href="{% url app1.views.tag_article tag %}" title="{{tag}}">{{tag}}</a> {% if not forloop.last %},&nbsp{% endif %}{%endfor%}{%endif%}&nbsp&nbsp{%if obj.original_author %}{% trans " Author:" %} {{obj.original_author|safe}}&nbsp&nbsp{%endif%}{% trans " Date" %}: {{each.pub_time|date:"d/m/Y"}}</p>
 <p class="more"><a href="{{each.get_absolute_url}}" rel="nofollow">{% trans "read more..." %}</a></p>
 </li>{%endif%}
 {% if forloop.first %}

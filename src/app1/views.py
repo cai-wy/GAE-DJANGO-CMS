@@ -62,7 +62,7 @@ def get_categories():
     """get all categories"""
     objects = memcache.get(categories_key)
     if objects is None:
-        objects = Category.all().order('-entrycount').fetch(200)
+        objects = Category.all().order('-entrycount').fetch(20)
         if len(objects)==0:
             newobj = Category(name = "Default Category 1").put()
             newobj = Category(name = "Default Category 2").put()
@@ -427,7 +427,7 @@ def add_article(request):
             #
             abstract = del_html(cd['abstract'])
             if abstract == '':
-                abstract = del_html(cd['content'])[:200] + " ..."
+                abstract = del_html(cd['content'])[:300] + " ..."
             #
             post_now = now()
             obj = Entry(author = request.user,
@@ -497,7 +497,7 @@ def edit_article(request,key):
             #
             abstract = del_html(cd['abstract'])
             if abstract == '':
-                abstract = del_html(cd['content'])[:200] + " ..."
+                abstract = del_html(cd['content'])[:300] + " ..."
             #            
             obj.abstract = abstract
             obj.content = cd['content'].replace("<p>&nbsp;</p>","")
@@ -986,7 +986,7 @@ def documentarticle(request):
             continue
         
         taglist = eachdocument.tags
-        abstract = del_html(eachdocument.content)[:200] + " ..."
+        abstract = del_html(eachdocument.content)[:300] + " ..."
         post_now = now()
         obj = Entry(author = authorid, #request.user,
                 title = title,
@@ -1040,7 +1040,7 @@ def documentarticle(request):
             continue
         
         taglist = eachdocument.tags
-        abstract = del_html(eachdocument.content)[:200] + " ..."
+        abstract = del_html(eachdocument.content)[:300] + " ..."
         post_now = now()
         obj = Entry(author = authorid, #request.user,
                 title = title,
